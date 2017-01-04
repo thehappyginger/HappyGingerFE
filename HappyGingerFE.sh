@@ -5,4 +5,4 @@ set -o errexit # Exit on error
 cd ~/Projects/HappyGingerFE
 git pull
 yarn install
-yarn run build -- --release
+yarn run start -- --release

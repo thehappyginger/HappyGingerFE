@@ -3,6 +3,8 @@
 set -o errexit # Exit on error
 
 cd ~/Projects/HappyGingerFE
-git pull
+git fetch --all
+git reset --hard origin/master
+npm install
 yarn install
 yarn run start -- --release

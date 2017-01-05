@@ -1,7 +1,7 @@
 {
   "private": true,
   "engines": {
-    "node": ">=6.5",
+    "node": "5.0",
     "npm": ">=3.10"
   },
   "dependencies": {

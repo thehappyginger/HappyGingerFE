@@ -7,17 +7,21 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Weather from '../../components/Weather/Weather';
+import MinecraftMonit from '../../components/MinecraftMoniter/MinecraftMonit';
 import styles from './Home.css';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    news: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      contentSnippet: PropTypes.string,
+    })).isRequired,
+  };
 
-    this.state = {};
-  }
   render() {
     return (
       <div className={styles.root}>

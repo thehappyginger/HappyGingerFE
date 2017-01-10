@@ -1,0 +1,6 @@
+{
+  "name": "MinecraftMonit",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MinecraftMonit.js"
+}

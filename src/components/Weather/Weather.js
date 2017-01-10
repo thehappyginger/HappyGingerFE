@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import fetch from '../../core/fetch';
 import styles from './Weather.css';
 
-class Weather extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class Weather extends React.Component {
   constructor(props) {
     super(props); // weather_location (FORMAT: <city>, <two letter state>; EX: Tucson, AZ)
 

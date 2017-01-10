@@ -18,20 +18,12 @@ class MinecraftMonit extends React.Component {
 
   runCommand(command) {
     if (command) {
-      const url = 'https://www.happyginger.net/minecraft?Body=%2';
+      const url = 'https://www.happyginger.net/api/v1/minecraft?Body=/';
       const command = 'list';
 
-      const request = new Request(`${url}${command}`, {
-        method: 'GET',
-        mode: 'cors',
-        redirect: 'follow',
-        headers: new Headers({
-          'Content-Type': 'text/plain',
-        }),
-      });
-
-      fetch(request)
-        .then((returnMsg) => this.setState({ returnMsg }))
+      fetch(`${url}${command}`)
+        .then((response) => response.json())
+        .then((response) => this.setState({ returnMsg: response.data }))
         .catch((err) => this.setState({
           returnMsg: err.message,
         }));

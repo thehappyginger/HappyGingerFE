@@ -1864,7 +1864,7 @@ module.exports =
 
   var _me2 = _interopRequireDefault(_me);
 
-  var _news = __webpack_require__(107);
+  var _news = __webpack_require__(50);
 
   var _news2 = _interopRequireDefault(_news);
 
@@ -1962,7 +1962,76 @@ module.exports =
     exports.default = UserType;
 
 /***/ },
-/* 50 */,
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _graphql = __webpack_require__(47);
+
+  var _fetch = __webpack_require__(51);
+
+  var _fetch2 = _interopRequireDefault(_fetch);
+
+  var _NewsItemType = __webpack_require__(54);
+
+  var _NewsItemType2 = _interopRequireDefault(_NewsItemType);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  // React.js News Feed (RSS)
+  var url = 'http://ajax.googleapis.com/ajax/services/feed/load' + '?v=1.0&num=10&q=https://reactjsnews.com/feed.xml'; /**
+                                                                                                                        * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                                                        *
+                                                                                                                        * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                                                        *
+                                                                                                                        * This source code is licensed under the MIT license found in the
+                                                                                                                        * LICENSE.txt file in the root directory of this source tree.
+                                                                                                                        */
+
+  var items = [];
+  var lastFetchTask = void 0;
+  var lastFetchTime = new Date(1970, 0, 1);
+
+  var news = {
+    type: new _graphql.GraphQLList(_NewsItemType2.default),
+    resolve: function resolve() {
+      if (lastFetchTask) {
+        return lastFetchTask;
+      }
+
+      if (new Date() - lastFetchTime > 1000 * 60 * 10 /* 10 mins */) {
+          lastFetchTime = new Date();
+          lastFetchTask = (0, _fetch2.default)(url).then(function (response) {
+            return response.json();
+          }).then(function (data) {
+            if (data.responseStatus === 200) {
+              items = data.responseData.feed.entries;
+            }
+
+            return items;
+          }).finally(function () {
+            lastFetchTask = null;
+          });
+
+          if (items.length) {
+            return items;
+          }
+
+          return lastFetchTask;
+        }
+
+      return items;
+    }
+  };
+
+    exports.default = news;
+
+/***/ },
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2030,7 +2099,38 @@ module.exports =
   module.exports = require("node-fetch");
 
 /***/ },
-/* 54 */,
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _graphql = __webpack_require__(47);
+
+  var NewsItemType = new _graphql.GraphQLObjectType({
+    name: 'NewsItem',
+    fields: {
+      title: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
+      link: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
+      author: { type: _graphql.GraphQLString },
+      publishedDate: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
+      contentSnippet: { type: _graphql.GraphQLString }
+    }
+  }); /**
+       * React Starter Kit (https://www.reactstarterkit.com/)
+       *
+       * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+       *
+       * This source code is licensed under the MIT license found in the
+       * LICENSE.txt file in the root directory of this source tree.
+       */
+
+    exports.default = NewsItemType;
+
+/***/ },
 /* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2136,11 +2236,11 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _Home = __webpack_require__(57);
+  var _Home = __webpack_require__(77);
 
   var _Home2 = _interopRequireDefault(_Home);
 
@@ -2221,6 +2321,1039 @@ module.exports =
 
   var _inherits3 = _interopRequireDefault(_inherits2);
 
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Layout/Layout.js'; /**
+                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                              *
+                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                              *
+                                                                                              * This source code is licensed under the MIT license found in the
+                                                                                              * LICENSE.txt file in the root directory of this source tree.
+                                                                                              */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Layout = __webpack_require__(58);
+
+  var _Layout2 = _interopRequireDefault(_Layout);
+
+  var _Header = __webpack_require__(60);
+
+  var _Header2 = _interopRequireDefault(_Header);
+
+  var _Feedback = __webpack_require__(71);
+
+  var _Feedback2 = _interopRequireDefault(_Feedback);
+
+  var _Footer = __webpack_require__(74);
+
+  var _Footer2 = _interopRequireDefault(_Footer);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Layout = function (_React$Component) {
+    (0, _inherits3.default)(Layout, _React$Component);
+
+    function Layout() {
+      (0, _classCallCheck3.default)(this, Layout);
+      return (0, _possibleConstructorReturn3.default)(this, (Layout.__proto__ || (0, _getPrototypeOf2.default)(Layout)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Layout, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 24
+            },
+            __self: this
+          },
+          _react2.default.createElement(_Header2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25
+            },
+            __self: this
+          }),
+          this.props.children,
+          _react2.default.createElement(_Feedback2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 27
+            },
+            __self: this
+          }),
+          _react2.default.createElement(_Footer2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 28
+            },
+            __self: this
+          })
+        );
+      }
+    }]);
+    return Layout;
+  }(_react2.default.Component);
+
+  Layout.propTypes = {
+    children: _react.PropTypes.node.isRequired
+  };
+    exports.default = (0, _withStyles2.default)(_Layout2.default)(Layout);
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(59);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Layout.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Layout.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\n/* Document\n   ========================================================================== */\n\nhtml {\n  font-family: sans-serif;/* 1 */\n  line-height: 1.15;/* 2 */\n  -ms-text-size-adjust: 100%;/* 3 */\n  -webkit-text-size-adjust: 100%;/* 3 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain {/* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box;/* 1 */\n  height: 0;/* 1 */\n  overflow: visible;/* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace;/* 1 */\n  font-size: 1em;/* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent;/* 1 */\n  -webkit-text-decoration-skip: objects;/* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none;/* 1 */\n  text-decoration: underline;/* 2 */\n  text-decoration: underline dotted;/* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;/* 1 */\n  font-size: 1em;/* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;/* 1 */\n  font-size: 100%;/* 1 */\n  line-height: 1.15;/* 1 */\n  margin: 0;/* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput {/* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect {/* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;/* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box;/* 1 */\n  color: inherit;/* 2 */\n  display: table;/* 1 */\n  max-width: 100%;/* 1 */\n  padding: 0;/* 3 */\n  white-space: normal;/* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block;/* 1 */\n  vertical-align: baseline;/* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;/* 1 */\n  padding: 0;/* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield;/* 1 */\n  outline-offset: -2px;/* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button;/* 1 */\n  font: inherit;/* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n.browserupgrade {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n", "", {"version":3,"sources":["/./components/Layout/Layout.css","/../node_modules/normalize.css/normalize.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH,4EAA4E;;AAE5E;;;;;GAKG;;AAEH;gFACgF;;AAEhF;EACE,wBAAwB,OAAQ;EAChC,kBAAkB,OAAQ;EAC1B,2BAA2B,OAAQ;EACnC,+BAA+B,OAAQ;CACxC;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,UAAU;CACX;;AAED;;GAEG;;AAEH;;;;;;EAME,eAAe;CAChB;;AAED;;;GAGG;;AAEH;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;MAEO,OAAO;EACZ,eAAe;CAChB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;;GAGG;;AAEH;EACE,wBAAwB,OAAQ;EAChC,UAAU,OAAQ;EAClB,kBAAkB,OAAQ;CAC3B;;AAED;;;GAGG;;AAEH;EACE,kCAAkC,OAAQ;EAC1C,eAAe,OAAQ;CACxB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;EACE,8BAA8B,OAAQ;EACtC,sCAAsC,OAAQ;CAC/C;;AAED;;;GAGG;;AAEH;;EAEE,iBAAiB;CAClB;;AAED;;;GAGG;;AAEH;EACE,oBAAoB,OAAQ;EAC5B,2BAA2B,OAAQ;EACnC,kCAAkC,OAAQ;CAC3C;;AAED;;GAEG;;AAEH;;EAEE,qBAAqB;CACtB;;AAED;;GAEG;;AAEH;;EAEE,oBAAoB;CACrB;;AAED;;;GAGG;;AAEH;;;EAGE,kCAAkC,OAAQ;EAC1C,eAAe,OAAQ;CACxB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;GAEG;;AAEH;EACE,uBAAuB;EACvB,YAAY;CACb;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,yBAAyB;CAC1B;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,YAAY;CACb;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;;EAEE,sBAAsB;CACvB;;AAED;;GAEG;;AAEH;EACE,cAAc;EACd,UAAU;CACX;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;;;;EAKE,wBAAwB,OAAQ;EAChC,gBAAgB,OAAQ;EACxB,kBAAkB,OAAQ;EAC1B,UAAU,OAAQ;CACnB;;AAED;;;GAGG;;AAEH;OACQ,OAAO;EACb,kBAAkB;CACnB;;AAED;;;GAGG;;AAEH;QACS,OAAO;EACd,qBAAqB;CACtB;;AAED;;;;GAIG;;AAEH;;;;EAIE,2BAA2B,OAAQ;CACpC;;AAED;;GAEG;;AAEH;;;;EAIE,mBAAmB;EACnB,WAAW;CACZ;;AAED;;GAEG;;AAEH;;;;EAIE,+BAA+B;CAChC;;AAED;;GAEG;;AAEH;EACE,0BAA0B;EAC1B,cAAc;EACd,+BAA+B;CAChC;;AAED;;;;;GAKG;;AAEH;EACE,uBAAuB,OAAQ;EAC/B,eAAe,OAAQ;EACvB,eAAe,OAAQ;EACvB,gBAAgB,OAAQ;EACxB,WAAW,OAAQ;EACnB,oBAAoB,OAAQ;CAC7B;;AAED;;;GAGG;;AAEH;EACE,sBAAsB,OAAQ;EAC9B,yBAAyB,OAAQ;CAClC;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,uBAAuB,OAAQ;EAC/B,WAAW,OAAQ;CACpB;;AAED;;GAEG;;AAEH;;EAEE,aAAa;CACd;;AAED;;;GAGG;;AAEH;EACE,8BAA8B,OAAQ;EACtC,qBAAqB,OAAQ;CAC9B;;AAED;;GAEG;;AAEH;;EAEE,yBAAyB;CAC1B;;AAED;;;GAGG;;AAEH;EACE,2BAA2B,OAAQ;EACnC,cAAc,OAAQ;CACvB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;EAEE,eAAe;CAChB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,sBAAsB;CACvB;;AAED;;GAEG;;AAEH;EACE,cAAc;CACf;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,cAAc;CACf;;ADjcD,yEAAyE;;AEXzE;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;AFfD;;gFAEgF;;AAEhF;EACE,YAAY;EACZ,iBAAiB;EACjB,eAAe,CAAC,YAAY;EAC5B,2DAAqC;EACrC,mBAAmB,CAAC,WAAW;CAChC;;AAED;EACE,eAAe;CAChB;;AAED;;;;;;GAMG;;AAEH;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;;GAEG;;AAEH;EACE,eAAe;EACf,YAAY;EACZ,UAAU;EACV,2BAA2B;EAC3B,cAAc;EACd,WAAW;CACZ;;AAED;;;;GAIG;;AAEH;;;;;;EAME,uBAAuB;CACxB;;AAED;;GAEG;;AAEH;EACE,UAAU;EACV,UAAU;EACV,WAAW;CACZ;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;gFAEgF;;AAEhF;EACE,gBAAgB;EAChB,iBAAiB;EACjB,YAAY;EACZ,iBAAiB;CAClB;;AAED;;;;gFAIgF;;AAEhF;EACE;;;IAGE,mCAAmC;IACnC,uBAAuB,CAAC,+DAA+D;IACvF,4BAA4B;IAC5B,6BAA6B;GAC9B;;EAED;;IAEE,2BAA2B;GAC5B;;EAED;IACE,6BAA6B;GAC9B;;EAED;IACE,8BAA8B;GAC/B;;EAED;;;KAGG;;EAEH;;IAEE,YAAY;GACb;;EAED;;IAEE,uBAAuB;IACvB,yBAAyB;GAC1B;;EAED;;;KAGG;;EAEH;IACE,4BAA4B;GAC7B;;EAED;;IAEE,yBAAyB;GAC1B;;EAED;IACE,2BAA2B;GAC5B;;EAED;;;IAGE,WAAW;IACX,UAAU;GACX;;EAED;;IAEE,wBAAwB;GACzB;CACF","file":"Layout.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../../node_modules/normalize.css/normalize.css';\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n@import '../variables.css';\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: var(--font-family-base);\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n:global(.browserupgrade) {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n","/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\n/* Document\n   ========================================================================== */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  line-height: 1.15; /* 2 */\n  -ms-text-size-adjust: 100%; /* 3 */\n  -webkit-text-size-adjust: 100%; /* 3 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Header/Header.js'; /**
+                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                              *
+                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                              *
+                                                                                              * This source code is licensed under the MIT license found in the
+                                                                                              * LICENSE.txt file in the root directory of this source tree.
+                                                                                              */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Header = __webpack_require__(61);
+
+  var _Header2 = _interopRequireDefault(_Header);
+
+  var _Link = __webpack_require__(63);
+
+  var _Link2 = _interopRequireDefault(_Link);
+
+  var _Navigation = __webpack_require__(67);
+
+  var _Navigation2 = _interopRequireDefault(_Navigation);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  // import logoUrl from './logo-small.png';
+  // import logoUrl2x from './logo-small@2x.png';
+
+  var Header = function (_React$Component) {
+    (0, _inherits3.default)(Header, _React$Component);
+
+    function Header() {
+      (0, _classCallCheck3.default)(this, Header);
+      return (0, _possibleConstructorReturn3.default)(this, (Header.__proto__ || (0, _getPrototypeOf2.default)(Header)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Header, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: _Header2.default.root, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 21
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            'div',
+            { className: _Header2.default.container, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 22
+              },
+              __self: this
+            },
+            _react2.default.createElement(_Navigation2.default, { className: _Header2.default.nav, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              },
+              __self: this
+            }),
+            _react2.default.createElement(
+              _Link2.default,
+              { className: _Header2.default.brand, to: '/', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                },
+                __self: this
+              },
+              _react2.default.createElement(
+                'span',
+                { className: _Header2.default.brandTxt, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 26
+                  },
+                  __self: this
+                },
+                'HappyGinger'
+              )
+            ),
+            _react2.default.createElement('div', { className: _Header2.default.banner, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 28
+              },
+              __self: this
+            })
+          )
+        );
+      }
+    }]);
+    return Header;
+  }(_react2.default.Component);
+
+    exports.default = (0, _withStyles2.default)(_Header2.default)(Header);
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(62);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Header.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Header.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Header-root-3Gi4A {\n  background: #394a88;\n  color: #fff;\n}\n\n.Header-container-1rGbt {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: 1000px;\n}\n\n.Header-brand-19lnX {\n  color: rgb(146, 229, 252);\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.Header-brandTxt-2mixT {\n  margin-left: 10px;\n}\n\n.Header-nav-1zCyG {\n  float: right;\n  margin-top: 6px;\n}\n\n.Header-banner-2Lc2c {\n  text-align: center;\n}\n\n.Header-bannerTitle-2Qzpm {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.Header-bannerDesc-3mmkW {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n", "", {"version":3,"sources":["/./components/Header/Header.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADfD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,gBAAgB;EAChB,kBAAoC;CACrC;;AAED;EACE,0BAAiD;EACjD,sBAAsB;EACtB,kBAAkB,CAAC,WAAW;CAC/B;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB;CACjB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,UAAU;EACV,cAAc;EACd,oBAAoB;EACpB,eAAe;EACf,iBAAiB;CAClB;;AAED;EACE,WAAW;EACX,gCAAgC;EAChC,kBAAkB;EAClB,UAAU;CACX","file":"Header.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n:root {\n  --brand-color: #61dafb;\n}\n\n.root {\n  background: #394a88;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: var(--max-content-width);\n}\n\n.brand {\n  color: color(var(--brand-color) lightness(+10%));\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.brandTxt {\n  margin-left: 10px;\n}\n\n.nav {\n  float: right;\n  margin-top: 6px;\n}\n\n.banner {\n  text-align: center;\n}\n\n.bannerTitle {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.bannerDesc {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "Header-root-3Gi4A",
+  	"container": "Header-container-1rGbt",
+  	"brand": "Header-brand-19lnX",
+  	"brandTxt": "Header-brandTxt-2mixT",
+  	"nav": "Header-nav-1zCyG",
+  	"banner": "Header-banner-2Lc2c",
+  	"bannerTitle": "Header-bannerTitle-2Qzpm",
+  	"bannerDesc": "Header-bannerDesc-3mmkW"
+  };
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _extends2 = __webpack_require__(4);
+
+  var _extends3 = _interopRequireDefault(_extends2);
+
+  var _objectWithoutProperties2 = __webpack_require__(64);
+
+  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Link/Link.js'; /**
+                                                                                          * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                          *
+                                                                                          * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                          *
+                                                                                          * This source code is licensed under the MIT license found in the
+                                                                                          * LICENSE.txt file in the root directory of this source tree.
+                                                                                          */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _history = __webpack_require__(65);
+
+  var _history2 = _interopRequireDefault(_history);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function isLeftClickEvent(event) {
+    return event.button === 0;
+  }
+
+  function isModifiedEvent(event) {
+    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  }
+
+  var Link = function (_React$Component) {
+    (0, _inherits3.default)(Link, _React$Component);
+
+    function Link() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      (0, _classCallCheck3.default)(this, Link);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Link.__proto__ || (0, _getPrototypeOf2.default)(Link)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (event) {
+        if (_this.props.onClick) {
+          _this.props.onClick(event);
+        }
+
+        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+          return;
+        }
+
+        if (event.defaultPrevented === true) {
+          return;
+        }
+
+        event.preventDefault();
+        _history2.default.push(_this.props.to);
+      }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }
+
+    (0, _createClass3.default)(Link, [{
+      key: 'render',
+      value: function render() {
+        var _props = this.props,
+            to = _props.to,
+            children = _props.children,
+            props = (0, _objectWithoutProperties3.default)(_props, ['to', 'children']);
+
+        return _react2.default.createElement(
+          'a',
+          (0, _extends3.default)({ href: to }, props, { onClick: this.handleClick, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 47
+            },
+            __self: this
+          }),
+          children
+        );
+      }
+    }]);
+    return Link;
+  }(_react2.default.Component);
+
+  Link.propTypes = {
+    to: _react.PropTypes.string.isRequired,
+    children: _react.PropTypes.node,
+    onClick: _react.PropTypes.func
+  };
+    exports.default = Link;
+
+/***/ },
+/* 64 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/objectWithoutProperties");
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _createBrowserHistory = __webpack_require__(66);
+
+  var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  // Navigation manager, e.g. history.push('/home')
+  // https://github.com/mjackson/history
+  exports.default = (false) && (0, _createBrowserHistory2.default)(); /**
+                                                                                   * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                   *
+                                                                                   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                   *
+                                                                                   * This source code is licensed under the MIT license found in the
+                                                                                   * LICENSE.txt file in the root directory of this source tree.
+                                                                                   */
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/createBrowserHistory");
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Navigation/Navigation.js'; /**
+                                                                                                      * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                                      *
+                                                                                                      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                                      *
+                                                                                                      * This source code is licensed under the MIT license found in the
+                                                                                                      * LICENSE.txt file in the root directory of this source tree.
+                                                                                                      */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _classnames = __webpack_require__(68);
+
+  var _classnames2 = _interopRequireDefault(_classnames);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Navigation = __webpack_require__(69);
+
+  var _Navigation2 = _interopRequireDefault(_Navigation);
+
+  var _Link = __webpack_require__(63);
+
+  var _Link2 = _interopRequireDefault(_Link);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Navigation = function (_React$Component) {
+    (0, _inherits3.default)(Navigation, _React$Component);
+
+    function Navigation() {
+      (0, _classCallCheck3.default)(this, Navigation);
+      return (0, _possibleConstructorReturn3.default)(this, (Navigation.__proto__ || (0, _getPrototypeOf2.default)(Navigation)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Navigation, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)(_Navigation2.default.root, this.props.className), role: 'navigation', __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            _Link2.default,
+            { className: _Navigation2.default.link, to: '/about', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 24
+              },
+              __self: this
+            },
+            'About'
+          ),
+          _react2.default.createElement(
+            _Link2.default,
+            { className: _Navigation2.default.link, to: '/contact', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 25
+              },
+              __self: this
+            },
+            'Contact'
+          )
+        );
+      }
+    }]);
+    return Navigation;
+  }(_react2.default.Component);
+
+  Navigation.propTypes = {
+    className: _react.PropTypes.string
+  };
+    exports.default = (0, _withStyles2.default)(_Navigation2.default)(Navigation);
+
+/***/ },
+/* 68 */
+/***/ function(module, exports) {
+
+  module.exports = require("classnames");
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(70);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Navigation.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Navigation.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.Navigation-root-Kev6U {\n  margin: 0;\n}\n\n.Navigation-link-1-rhI {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.Navigation-link-1-rhI,\n.Navigation-link-1-rhI:active,\n.Navigation-link-1-rhI:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.Navigation-link-1-rhI:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.Navigation-highlight-g6k6K {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.Navigation-highlight-g6k6K:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.Navigation-spacer-2KA91 {\n  color: rgba(255, 255, 255, 0.3);\n}\n", "", {"version":3,"sources":["/./components/Navigation/Navigation.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;CACX;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,sBAAsB;EACtB,mBAAmB,CAAC,WAAW;CAChC;;AAED;;;EAGE,gCAAgC;CACjC;;AAED;EACE,8BAA8B;CAC/B;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,mBAAmB;EACnB,gCAAgC;EAChC,YAAY;CACb;;AAED;EACE,+BAA+B;CAChC;;AAED;EACE,gCAAgC;CACjC","file":"Navigation.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.root {\n  margin: 0;\n}\n\n.link {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.link,\n.link:active,\n.link:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.link:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.highlight {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.highlight:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.spacer {\n  color: rgba(255, 255, 255, 0.3);\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "Navigation-root-Kev6U",
+  	"link": "Navigation-link-1-rhI",
+  	"highlight": "Navigation-highlight-g6k6K",
+  	"spacer": "Navigation-spacer-2KA91"
+  };
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Feedback/Feedback.js'; /**
+                                                                                                  * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                                  *
+                                                                                                  * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                                  *
+                                                                                                  * This source code is licensed under the MIT license found in the
+                                                                                                  * LICENSE.txt file in the root directory of this source tree.
+                                                                                                  */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Feedback = __webpack_require__(72);
+
+  var _Feedback2 = _interopRequireDefault(_Feedback);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Feedback = function (_React$Component) {
+    (0, _inherits3.default)(Feedback, _React$Component);
+
+    function Feedback() {
+      (0, _classCallCheck3.default)(this, Feedback);
+      return (0, _possibleConstructorReturn3.default)(this, (Feedback.__proto__ || (0, _getPrototypeOf2.default)(Feedback)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Feedback, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: _Feedback2.default.root, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 17
+            },
+            __self: this
+          },
+          _react2.default.createElement('div', { className: _Feedback2.default.container, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 18
+            },
+            __self: this
+          })
+        );
+      }
+    }]);
+    return Feedback;
+  }(_react2.default.Component);
+
+    exports.default = (0, _withStyles2.default)(_Feedback2.default)(Feedback);
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(73);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Feedback.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Feedback.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Feedback-root-2NP0J {\n  background: #f5f5f5;\n  color: #333;\n}\n\n.Feedback-container-2AyN4 {\n  margin: 0 auto;\n  padding: 20px 8px;\n  max-width: 1000px;\n  text-align: center;\n  font-size: 1.5em; /* ~24px */\n}\n\n.Feedback-link-17M03,\n.Feedback-link-17M03:active,\n.Feedback-link-17M03:hover,\n.Feedback-link-17M03:visited {\n  color: #333;\n  text-decoration: none;\n}\n\n.Feedback-link-17M03:hover {\n  text-decoration: underline;\n}\n\n.Feedback-spacer-2n9Qd {\n  padding-right: 15px;\n  padding-left: 15px;\n}\n", "", {"version":3,"sources":["/./components/Feedback/Feedback.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADnBD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;EACpC,mBAAmB;EACnB,iBAAiB,CAAC,WAAW;CAC9B;;AAED;;;;EAIE,YAAY;EACZ,sBAAsB;CACvB;;AAED;EACE,2BAA2B;CAC5B;;AAED;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Feedback.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n.root {\n  background: #f5f5f5;\n  color: #333;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 8px;\n  max-width: var(--max-content-width);\n  text-align: center;\n  font-size: 1.5em; /* ~24px */\n}\n\n.link,\n.link:active,\n.link:hover,\n.link:visited {\n  color: #333;\n  text-decoration: none;\n}\n\n.link:hover {\n  text-decoration: underline;\n}\n\n.spacer {\n  padding-right: 15px;\n  padding-left: 15px;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "Feedback-root-2NP0J",
+  	"container": "Feedback-container-2AyN4",
+  	"link": "Feedback-link-17M03",
+  	"spacer": "Feedback-spacer-2n9Qd"
+  };
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Footer/Footer.js'; /**
+                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                              *
+                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                              *
+                                                                                              * This source code is licensed under the MIT license found in the
+                                                                                              * LICENSE.txt file in the root directory of this source tree.
+                                                                                              */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Footer = __webpack_require__(75);
+
+  var _Footer2 = _interopRequireDefault(_Footer);
+
+  var _Link = __webpack_require__(63);
+
+  var _Link2 = _interopRequireDefault(_Link);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Footer = function (_React$Component) {
+    (0, _inherits3.default)(Footer, _React$Component);
+
+    function Footer() {
+      (0, _classCallCheck3.default)(this, Footer);
+      return (0, _possibleConstructorReturn3.default)(this, (Footer.__proto__ || (0, _getPrototypeOf2.default)(Footer)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Footer, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: _Footer2.default.root, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 18
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            'div',
+            { className: _Footer2.default.container, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 19
+              },
+              __self: this
+            },
+            _react2.default.createElement(
+              'span',
+              { className: _Footer2.default.text, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 20
+                },
+                __self: this
+              },
+              '\xA9 ',
+              new Date().getFullYear(),
+              ' - Michael Cooper, Tucson, AZ'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: _Footer2.default.spacer, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 21
+                },
+                __self: this
+              },
+              '\xB7'
+            ),
+            _react2.default.createElement(
+              _Link2.default,
+              { className: _Footer2.default.link, to: '/', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 22
+                },
+                __self: this
+              },
+              'Home'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: _Footer2.default.spacer, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 23
+                },
+                __self: this
+              },
+              '\xB7'
+            ),
+            _react2.default.createElement(
+              _Link2.default,
+              { className: _Footer2.default.link, to: '/privacy', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                },
+                __self: this
+              },
+              'Privacy'
+            )
+          )
+        );
+      }
+    }]);
+    return Footer;
+  }(_react2.default.Component);
+
+    exports.default = (0, _withStyles2.default)(_Footer2.default)(Footer);
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(76);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Footer.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Footer.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.Footer-root-3Jihw {\n  background: #333;\n  color: #fff;\n}\n\n.Footer-container-n1bVC {\n  margin: 0 auto;\n  padding: 20px 15px;\n  max-width: 1000px;\n  text-align: center;\n}\n\n.Footer-text-2mr6B {\n  color: rgba(255, 255, 255, 0.5);\n}\n\n.Footer-spacer-3HO-I {\n  color: rgba(255, 255, 255, 0.3);\n}\n\n.Footer-text-2mr6B,\n.Footer-link-1sUkm {\n  padding: 2px 5px;\n  font-size: 1em;\n}\n\n.Footer-link-1sUkm,\n.Footer-link-1sUkm:active,\n.Footer-link-1sUkm:visited {\n  color: rgba(255, 255, 255, 0.6);\n  text-decoration: none;\n}\n\n.Footer-link-1sUkm:hover {\n  color: rgba(255, 255, 255, 1);\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/Footer/Footer.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,iBAAiB;EACjB,YAAY;CACb;;AAED;EACE,eAAe;EACf,mBAAmB;EACnB,kBAAoC;EACpC,mBAAmB;CACpB;;AAED;EACE,gCAAgC;CACjC;;AAED;EACE,gCAAgC;CACjC;;AAED;;EAEE,iBAAiB;EACjB,eAAe;CAChB;;AAED;;;EAGE,gCAAgC;EAChC,sBAAsB;CACvB;;AAED;EACE,8BAA8B;CAC/B","file":"Footer.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.root {\n  background: #333;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 15px;\n  max-width: var(--max-content-width);\n  text-align: center;\n}\n\n.text {\n  color: rgba(255, 255, 255, 0.5);\n}\n\n.spacer {\n  color: rgba(255, 255, 255, 0.3);\n}\n\n.text,\n.link {\n  padding: 2px 5px;\n  font-size: 1em;\n}\n\n.link,\n.link:active,\n.link:visited {\n  color: rgba(255, 255, 255, 0.6);\n  text-decoration: none;\n}\n\n.link:hover {\n  color: rgba(255, 255, 255, 1);\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "Footer-root-3Jihw",
+  	"container": "Footer-container-n1bVC",
+  	"text": "Footer-text-2mr6B",
+  	"spacer": "Footer-spacer-3HO-I",
+  	"link": "Footer-link-1sUkm"
+  };
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
   var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/routes/home/Home.js'; /**
                                                                                       * React Starter Kit (https://www.reactstarterkit.com/)
                                                                                       *
@@ -2238,11 +3371,15 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _Weather = __webpack_require__(58);
+  var _Weather = __webpack_require__(78);
 
   var _Weather2 = _interopRequireDefault(_Weather);
 
-  var _Home = __webpack_require__(64);
+  var _MinecraftMonit = __webpack_require__(81);
+
+  var _MinecraftMonit2 = _interopRequireDefault(_MinecraftMonit);
+
+  var _Home = __webpack_require__(84);
 
   var _Home2 = _interopRequireDefault(_Home);
 
@@ -2267,7 +3404,7 @@ module.exports =
           'div',
           { className: _Home2.default.root, __source: {
               fileName: _jsxFileName,
-              lineNumber: 23
+              lineNumber: 24
             },
             __self: this
           },
@@ -2275,7 +3412,7 @@ module.exports =
             'div',
             { className: 'container', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 24
+                lineNumber: 25
               },
               __self: this
             },
@@ -2283,7 +3420,7 @@ module.exports =
               'div',
               { className: 'row', __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 25
+                  lineNumber: 26
                 },
                 __self: this
               },
@@ -2291,7 +3428,7 @@ module.exports =
                 'div',
                 { className: 'col-md-8', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 26
+                    lineNumber: 27
                   },
                   __self: this
                 },
@@ -2300,16 +3437,16 @@ module.exports =
                   {
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 27
+                      lineNumber: 28
                     },
                     __self: this
                   },
                   'HappyGinger Datahub'
                 ),
-                _react2.default.createElement(MinecraftMonit, {
+                _react2.default.createElement(_MinecraftMonit2.default, {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 28
+                    lineNumber: 29
                   },
                   __self: this
                 })
@@ -2318,19 +3455,19 @@ module.exports =
                 'div',
                 { className: 'col-md-4', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 30
+                    lineNumber: 31
                   },
                   __self: this
                 },
                 _react2.default.createElement(_Weather2.default, { weather_location: 'Summerhaven, AZ', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 31
+                    lineNumber: 32
                   },
                   __self: this
                 }),
                 _react2.default.createElement(_Weather2.default, { weather_location: 'Tucson, AZ', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 32
+                    lineNumber: 33
                   },
                   __self: this
                 })
@@ -2346,7 +3483,7 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_Home2.default)(Home);
 
 /***/ },
-/* 58 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2389,7 +3526,7 @@ module.exports =
 
   var _fetch2 = _interopRequireDefault(_fetch);
 
-  var _Weather = __webpack_require__(59);
+  var _Weather = __webpack_require__(79);
 
   var _Weather2 = _interopRequireDefault(_Weather);
 
@@ -2689,11 +3826,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Weather2.default)(Weather);
 
 /***/ },
-/* 59 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(60);
+      var content = __webpack_require__(80);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -2724,7 +3861,7 @@ module.exports =
     
 
 /***/ },
-/* 60 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -2740,14 +3877,170 @@ module.exports =
   };
 
 /***/ },
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/MinecraftMoniter/MinecraftMonit.js';
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _fetch = __webpack_require__(51);
+
+  var _fetch2 = _interopRequireDefault(_fetch);
+
+  var _MinecraftMonit = __webpack_require__(82);
+
+  var _MinecraftMonit2 = _interopRequireDefault(_MinecraftMonit);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var MinecraftMonit = function (_React$Component) {
+    (0, _inherits3.default)(MinecraftMonit, _React$Component);
+
+    function MinecraftMonit(props) {
+      (0, _classCallCheck3.default)(this, MinecraftMonit);
+
+      var _this = (0, _possibleConstructorReturn3.default)(this, (MinecraftMonit.__proto__ || (0, _getPrototypeOf2.default)(MinecraftMonit)).call(this, props));
+
+      _this.state = {
+        returnMsg: ''
+      };
+      return _this;
+    }
+
+    (0, _createClass3.default)(MinecraftMonit, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.runCommand('list');
+      }
+    }, {
+      key: 'runCommand',
+      value: function runCommand(command) {
+        var _this2 = this;
+
+        if (command) {
+          var url = 'https://www.happyginger.net/api/v1/minecraft?Body=/';
+          var _command = 'list';
+
+          (0, _fetch2.default)('' + url + _command).then(function (response) {
+            return response.json();
+          }).then(function (response) {
+            return _this2.setState({ returnMsg: response.data });
+          }).catch(function (err) {
+            return _this2.setState({
+              returnMsg: err.message
+            });
+          });
+        }
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 34
+            },
+            __self: this
+          },
+          this.state.returnMsg
+        );
+      }
+    }]);
+    return MinecraftMonit;
+  }(_react2.default.Component);
+
+    exports.default = (0, _withStyles2.default)(_MinecraftMonit2.default)(MinecraftMonit);
+
+/***/ },
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(65);
+      var content = __webpack_require__(83);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MinecraftMonit.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MinecraftMonit.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"MinecraftMonit.css","sourceRoot":"webpack://"}]);
+
+  // exports
+
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(85);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -2778,7 +4071,7 @@ module.exports =
     
 
 /***/ },
-/* 65 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -2791,1039 +4084,6 @@ module.exports =
   // exports
   exports.locals = {
   	"root": "Home-root-2IMq2"
-  };
-
-/***/ },
-/* 66 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Layout/Layout.js'; /**
-                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                              *
-                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                              *
-                                                                                              * This source code is licensed under the MIT license found in the
-                                                                                              * LICENSE.txt file in the root directory of this source tree.
-                                                                                              */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _withStyles = __webpack_require__(28);
-
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-
-  var _Layout = __webpack_require__(67);
-
-  var _Layout2 = _interopRequireDefault(_Layout);
-
-  var _Header = __webpack_require__(69);
-
-  var _Header2 = _interopRequireDefault(_Header);
-
-  var _Feedback = __webpack_require__(80);
-
-  var _Feedback2 = _interopRequireDefault(_Feedback);
-
-  var _Footer = __webpack_require__(83);
-
-  var _Footer2 = _interopRequireDefault(_Footer);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var Layout = function (_React$Component) {
-    (0, _inherits3.default)(Layout, _React$Component);
-
-    function Layout() {
-      (0, _classCallCheck3.default)(this, Layout);
-      return (0, _possibleConstructorReturn3.default)(this, (Layout.__proto__ || (0, _getPrototypeOf2.default)(Layout)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(Layout, [{
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 24
-            },
-            __self: this
-          },
-          _react2.default.createElement(_Header2.default, {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 25
-            },
-            __self: this
-          }),
-          this.props.children,
-          _react2.default.createElement(_Feedback2.default, {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 27
-            },
-            __self: this
-          }),
-          _react2.default.createElement(_Footer2.default, {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 28
-            },
-            __self: this
-          })
-        );
-      }
-    }]);
-    return Layout;
-  }(_react2.default.Component);
-
-  Layout.propTypes = {
-    children: _react.PropTypes.node.isRequired
-  };
-    exports.default = (0, _withStyles2.default)(_Layout2.default)(Layout);
-
-/***/ },
-/* 67 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(68);
-      var insertCss = __webpack_require__(32);
-
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-
-      module.exports = content.locals || {};
-      module.exports._getContent = function() { return content; };
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-      
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Layout.css", function() {
-          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Layout.css");
-
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(31)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\n/* Document\n   ========================================================================== */\n\nhtml {\n  font-family: sans-serif;/* 1 */\n  line-height: 1.15;/* 2 */\n  -ms-text-size-adjust: 100%;/* 3 */\n  -webkit-text-size-adjust: 100%;/* 3 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain {/* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box;/* 1 */\n  height: 0;/* 1 */\n  overflow: visible;/* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace;/* 1 */\n  font-size: 1em;/* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent;/* 1 */\n  -webkit-text-decoration-skip: objects;/* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none;/* 1 */\n  text-decoration: underline;/* 2 */\n  text-decoration: underline dotted;/* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;/* 1 */\n  font-size: 1em;/* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;/* 1 */\n  font-size: 100%;/* 1 */\n  line-height: 1.15;/* 1 */\n  margin: 0;/* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput {/* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect {/* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;/* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box;/* 1 */\n  color: inherit;/* 2 */\n  display: table;/* 1 */\n  max-width: 100%;/* 1 */\n  padding: 0;/* 3 */\n  white-space: normal;/* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block;/* 1 */\n  vertical-align: baseline;/* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;/* 1 */\n  padding: 0;/* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield;/* 1 */\n  outline-offset: -2px;/* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button;/* 1 */\n  font: inherit;/* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n.browserupgrade {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n", "", {"version":3,"sources":["/./components/Layout/Layout.css","/../node_modules/normalize.css/normalize.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH,4EAA4E;;AAE5E;;;;;GAKG;;AAEH;gFACgF;;AAEhF;EACE,wBAAwB,OAAQ;EAChC,kBAAkB,OAAQ;EAC1B,2BAA2B,OAAQ;EACnC,+BAA+B,OAAQ;CACxC;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,UAAU;CACX;;AAED;;GAEG;;AAEH;;;;;;EAME,eAAe;CAChB;;AAED;;;GAGG;;AAEH;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;MAEO,OAAO;EACZ,eAAe;CAChB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;;GAGG;;AAEH;EACE,wBAAwB,OAAQ;EAChC,UAAU,OAAQ;EAClB,kBAAkB,OAAQ;CAC3B;;AAED;;;GAGG;;AAEH;EACE,kCAAkC,OAAQ;EAC1C,eAAe,OAAQ;CACxB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;EACE,8BAA8B,OAAQ;EACtC,sCAAsC,OAAQ;CAC/C;;AAED;;;GAGG;;AAEH;;EAEE,iBAAiB;CAClB;;AAED;;;GAGG;;AAEH;EACE,oBAAoB,OAAQ;EAC5B,2BAA2B,OAAQ;EACnC,kCAAkC,OAAQ;CAC3C;;AAED;;GAEG;;AAEH;;EAEE,qBAAqB;CACtB;;AAED;;GAEG;;AAEH;;EAEE,oBAAoB;CACrB;;AAED;;;GAGG;;AAEH;;;EAGE,kCAAkC,OAAQ;EAC1C,eAAe,OAAQ;CACxB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;GAEG;;AAEH;EACE,uBAAuB;EACvB,YAAY;CACb;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,yBAAyB;CAC1B;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,YAAY;CACb;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;;EAEE,sBAAsB;CACvB;;AAED;;GAEG;;AAEH;EACE,cAAc;EACd,UAAU;CACX;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;;;;EAKE,wBAAwB,OAAQ;EAChC,gBAAgB,OAAQ;EACxB,kBAAkB,OAAQ;EAC1B,UAAU,OAAQ;CACnB;;AAED;;;GAGG;;AAEH;OACQ,OAAO;EACb,kBAAkB;CACnB;;AAED;;;GAGG;;AAEH;QACS,OAAO;EACd,qBAAqB;CACtB;;AAED;;;;GAIG;;AAEH;;;;EAIE,2BAA2B,OAAQ;CACpC;;AAED;;GAEG;;AAEH;;;;EAIE,mBAAmB;EACnB,WAAW;CACZ;;AAED;;GAEG;;AAEH;;;;EAIE,+BAA+B;CAChC;;AAED;;GAEG;;AAEH;EACE,0BAA0B;EAC1B,cAAc;EACd,+BAA+B;CAChC;;AAED;;;;;GAKG;;AAEH;EACE,uBAAuB,OAAQ;EAC/B,eAAe,OAAQ;EACvB,eAAe,OAAQ;EACvB,gBAAgB,OAAQ;EACxB,WAAW,OAAQ;EACnB,oBAAoB,OAAQ;CAC7B;;AAED;;;GAGG;;AAEH;EACE,sBAAsB,OAAQ;EAC9B,yBAAyB,OAAQ;CAClC;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,uBAAuB,OAAQ;EAC/B,WAAW,OAAQ;CACpB;;AAED;;GAEG;;AAEH;;EAEE,aAAa;CACd;;AAED;;;GAGG;;AAEH;EACE,8BAA8B,OAAQ;EACtC,qBAAqB,OAAQ;CAC9B;;AAED;;GAEG;;AAEH;;EAEE,yBAAyB;CAC1B;;AAED;;;GAGG;;AAEH;EACE,2BAA2B,OAAQ;EACnC,cAAc,OAAQ;CACvB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;EAEE,eAAe;CAChB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,sBAAsB;CACvB;;AAED;;GAEG;;AAEH;EACE,cAAc;CACf;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,cAAc;CACf;;ADjcD,yEAAyE;;AEXzE;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;AFfD;;gFAEgF;;AAEhF;EACE,YAAY;EACZ,iBAAiB;EACjB,eAAe,CAAC,YAAY;EAC5B,2DAAqC;EACrC,mBAAmB,CAAC,WAAW;CAChC;;AAED;EACE,eAAe;CAChB;;AAED;;;;;;GAMG;;AAEH;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;;GAEG;;AAEH;EACE,eAAe;EACf,YAAY;EACZ,UAAU;EACV,2BAA2B;EAC3B,cAAc;EACd,WAAW;CACZ;;AAED;;;;GAIG;;AAEH;;;;;;EAME,uBAAuB;CACxB;;AAED;;GAEG;;AAEH;EACE,UAAU;EACV,UAAU;EACV,WAAW;CACZ;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;gFAEgF;;AAEhF;EACE,gBAAgB;EAChB,iBAAiB;EACjB,YAAY;EACZ,iBAAiB;CAClB;;AAED;;;;gFAIgF;;AAEhF;EACE;;;IAGE,mCAAmC;IACnC,uBAAuB,CAAC,+DAA+D;IACvF,4BAA4B;IAC5B,6BAA6B;GAC9B;;EAED;;IAEE,2BAA2B;GAC5B;;EAED;IACE,6BAA6B;GAC9B;;EAED;IACE,8BAA8B;GAC/B;;EAED;;;KAGG;;EAEH;;IAEE,YAAY;GACb;;EAED;;IAEE,uBAAuB;IACvB,yBAAyB;GAC1B;;EAED;;;KAGG;;EAEH;IACE,4BAA4B;GAC7B;;EAED;;IAEE,yBAAyB;GAC1B;;EAED;IACE,2BAA2B;GAC5B;;EAED;;;IAGE,WAAW;IACX,UAAU;GACX;;EAED;;IAEE,wBAAwB;GACzB;CACF","file":"Layout.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../../node_modules/normalize.css/normalize.css';\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n@import '../variables.css';\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: var(--font-family-base);\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n:global(.browserupgrade) {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n","/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\n/* Document\n   ========================================================================== */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  line-height: 1.15; /* 2 */\n  -ms-text-size-adjust: 100%; /* 3 */\n  -webkit-text-size-adjust: 100%; /* 3 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
-
-  // exports
-
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Header/Header.js'; /**
-                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                              *
-                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                              *
-                                                                                              * This source code is licensed under the MIT license found in the
-                                                                                              * LICENSE.txt file in the root directory of this source tree.
-                                                                                              */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _withStyles = __webpack_require__(28);
-
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-
-  var _Header = __webpack_require__(70);
-
-  var _Header2 = _interopRequireDefault(_Header);
-
-  var _Link = __webpack_require__(72);
-
-  var _Link2 = _interopRequireDefault(_Link);
-
-  var _Navigation = __webpack_require__(76);
-
-  var _Navigation2 = _interopRequireDefault(_Navigation);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  // import logoUrl from './logo-small.png';
-  // import logoUrl2x from './logo-small@2x.png';
-
-  var Header = function (_React$Component) {
-    (0, _inherits3.default)(Header, _React$Component);
-
-    function Header() {
-      (0, _classCallCheck3.default)(this, Header);
-      return (0, _possibleConstructorReturn3.default)(this, (Header.__proto__ || (0, _getPrototypeOf2.default)(Header)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(Header, [{
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          { className: _Header2.default.root, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 21
-            },
-            __self: this
-          },
-          _react2.default.createElement(
-            'div',
-            { className: _Header2.default.container, __source: {
-                fileName: _jsxFileName,
-                lineNumber: 22
-              },
-              __self: this
-            },
-            _react2.default.createElement(_Navigation2.default, { className: _Header2.default.nav, __source: {
-                fileName: _jsxFileName,
-                lineNumber: 23
-              },
-              __self: this
-            }),
-            _react2.default.createElement(
-              _Link2.default,
-              { className: _Header2.default.brand, to: '/', __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 24
-                },
-                __self: this
-              },
-              _react2.default.createElement(
-                'span',
-                { className: _Header2.default.brandTxt, __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 26
-                  },
-                  __self: this
-                },
-                'HappyGinger'
-              )
-            ),
-            _react2.default.createElement('div', { className: _Header2.default.banner, __source: {
-                fileName: _jsxFileName,
-                lineNumber: 28
-              },
-              __self: this
-            })
-          )
-        );
-      }
-    }]);
-    return Header;
-  }(_react2.default.Component);
-
-    exports.default = (0, _withStyles2.default)(_Header2.default)(Header);
-
-/***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(71);
-      var insertCss = __webpack_require__(32);
-
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-
-      module.exports = content.locals || {};
-      module.exports._getContent = function() { return content; };
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-      
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Header.css", function() {
-          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Header.css");
-
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(31)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Header-root-3Gi4A {\n  background: #394a88;\n  color: #fff;\n}\n\n.Header-container-1rGbt {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: 1000px;\n}\n\n.Header-brand-19lnX {\n  color: rgb(146, 229, 252);\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.Header-brandTxt-2mixT {\n  margin-left: 10px;\n}\n\n.Header-nav-1zCyG {\n  float: right;\n  margin-top: 6px;\n}\n\n.Header-banner-2Lc2c {\n  text-align: center;\n}\n\n.Header-bannerTitle-2Qzpm {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.Header-bannerDesc-3mmkW {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n", "", {"version":3,"sources":["/./components/Header/Header.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADfD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,gBAAgB;EAChB,kBAAoC;CACrC;;AAED;EACE,0BAAiD;EACjD,sBAAsB;EACtB,kBAAkB,CAAC,WAAW;CAC/B;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB;CACjB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,UAAU;EACV,cAAc;EACd,oBAAoB;EACpB,eAAe;EACf,iBAAiB;CAClB;;AAED;EACE,WAAW;EACX,gCAAgC;EAChC,kBAAkB;EAClB,UAAU;CACX","file":"Header.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n:root {\n  --brand-color: #61dafb;\n}\n\n.root {\n  background: #394a88;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: var(--max-content-width);\n}\n\n.brand {\n  color: color(var(--brand-color) lightness(+10%));\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.brandTxt {\n  margin-left: 10px;\n}\n\n.nav {\n  float: right;\n  margin-top: 6px;\n}\n\n.banner {\n  text-align: center;\n}\n\n.bannerTitle {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.bannerDesc {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
-
-  // exports
-  exports.locals = {
-  	"root": "Header-root-3Gi4A",
-  	"container": "Header-container-1rGbt",
-  	"brand": "Header-brand-19lnX",
-  	"brandTxt": "Header-brandTxt-2mixT",
-  	"nav": "Header-nav-1zCyG",
-  	"banner": "Header-banner-2Lc2c",
-  	"bannerTitle": "Header-bannerTitle-2Qzpm",
-  	"bannerDesc": "Header-bannerDesc-3mmkW"
-  };
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _extends2 = __webpack_require__(4);
-
-  var _extends3 = _interopRequireDefault(_extends2);
-
-  var _objectWithoutProperties2 = __webpack_require__(73);
-
-  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Link/Link.js'; /**
-                                                                                          * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                          *
-                                                                                          * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                          *
-                                                                                          * This source code is licensed under the MIT license found in the
-                                                                                          * LICENSE.txt file in the root directory of this source tree.
-                                                                                          */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _history = __webpack_require__(74);
-
-  var _history2 = _interopRequireDefault(_history);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function isLeftClickEvent(event) {
-    return event.button === 0;
-  }
-
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-
-  var Link = function (_React$Component) {
-    (0, _inherits3.default)(Link, _React$Component);
-
-    function Link() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
-      (0, _classCallCheck3.default)(this, Link);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Link.__proto__ || (0, _getPrototypeOf2.default)(Link)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (event) {
-        if (_this.props.onClick) {
-          _this.props.onClick(event);
-        }
-
-        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
-          return;
-        }
-
-        if (event.defaultPrevented === true) {
-          return;
-        }
-
-        event.preventDefault();
-        _history2.default.push(_this.props.to);
-      }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-    }
-
-    (0, _createClass3.default)(Link, [{
-      key: 'render',
-      value: function render() {
-        var _props = this.props,
-            to = _props.to,
-            children = _props.children,
-            props = (0, _objectWithoutProperties3.default)(_props, ['to', 'children']);
-
-        return _react2.default.createElement(
-          'a',
-          (0, _extends3.default)({ href: to }, props, { onClick: this.handleClick, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 47
-            },
-            __self: this
-          }),
-          children
-        );
-      }
-    }]);
-    return Link;
-  }(_react2.default.Component);
-
-  Link.propTypes = {
-    to: _react.PropTypes.string.isRequired,
-    children: _react.PropTypes.node,
-    onClick: _react.PropTypes.func
-  };
-    exports.default = Link;
-
-/***/ },
-/* 73 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/helpers/objectWithoutProperties");
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _createBrowserHistory = __webpack_require__(75);
-
-  var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  // Navigation manager, e.g. history.push('/home')
-  // https://github.com/mjackson/history
-  exports.default = (false) && (0, _createBrowserHistory2.default)(); /**
-                                                                                   * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                   *
-                                                                                   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                   *
-                                                                                   * This source code is licensed under the MIT license found in the
-                                                                                   * LICENSE.txt file in the root directory of this source tree.
-                                                                                   */
-
-/***/ },
-/* 75 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/createBrowserHistory");
-
-/***/ },
-/* 76 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Navigation/Navigation.js'; /**
-                                                                                                      * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                                      *
-                                                                                                      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                                      *
-                                                                                                      * This source code is licensed under the MIT license found in the
-                                                                                                      * LICENSE.txt file in the root directory of this source tree.
-                                                                                                      */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _classnames = __webpack_require__(77);
-
-  var _classnames2 = _interopRequireDefault(_classnames);
-
-  var _withStyles = __webpack_require__(28);
-
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-
-  var _Navigation = __webpack_require__(78);
-
-  var _Navigation2 = _interopRequireDefault(_Navigation);
-
-  var _Link = __webpack_require__(72);
-
-  var _Link2 = _interopRequireDefault(_Link);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var Navigation = function (_React$Component) {
-    (0, _inherits3.default)(Navigation, _React$Component);
-
-    function Navigation() {
-      (0, _classCallCheck3.default)(this, Navigation);
-      return (0, _possibleConstructorReturn3.default)(this, (Navigation.__proto__ || (0, _getPrototypeOf2.default)(Navigation)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(Navigation, [{
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          { className: (0, _classnames2.default)(_Navigation2.default.root, this.props.className), role: 'navigation', __source: {
-              fileName: _jsxFileName,
-              lineNumber: 23
-            },
-            __self: this
-          },
-          _react2.default.createElement(
-            _Link2.default,
-            { className: _Navigation2.default.link, to: '/about', __source: {
-                fileName: _jsxFileName,
-                lineNumber: 24
-              },
-              __self: this
-            },
-            'About'
-          ),
-          _react2.default.createElement(
-            _Link2.default,
-            { className: _Navigation2.default.link, to: '/contact', __source: {
-                fileName: _jsxFileName,
-                lineNumber: 25
-              },
-              __self: this
-            },
-            'Contact'
-          )
-        );
-      }
-    }]);
-    return Navigation;
-  }(_react2.default.Component);
-
-  Navigation.propTypes = {
-    className: _react.PropTypes.string
-  };
-    exports.default = (0, _withStyles2.default)(_Navigation2.default)(Navigation);
-
-/***/ },
-/* 77 */
-/***/ function(module, exports) {
-
-  module.exports = require("classnames");
-
-/***/ },
-/* 78 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(79);
-      var insertCss = __webpack_require__(32);
-
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-
-      module.exports = content.locals || {};
-      module.exports._getContent = function() { return content; };
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-      
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Navigation.css", function() {
-          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Navigation.css");
-
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(31)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.Navigation-root-Kev6U {\n  margin: 0;\n}\n\n.Navigation-link-1-rhI {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.Navigation-link-1-rhI,\n.Navigation-link-1-rhI:active,\n.Navigation-link-1-rhI:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.Navigation-link-1-rhI:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.Navigation-highlight-g6k6K {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.Navigation-highlight-g6k6K:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.Navigation-spacer-2KA91 {\n  color: rgba(255, 255, 255, 0.3);\n}\n", "", {"version":3,"sources":["/./components/Navigation/Navigation.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;CACX;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,sBAAsB;EACtB,mBAAmB,CAAC,WAAW;CAChC;;AAED;;;EAGE,gCAAgC;CACjC;;AAED;EACE,8BAA8B;CAC/B;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,mBAAmB;EACnB,gCAAgC;EAChC,YAAY;CACb;;AAED;EACE,+BAA+B;CAChC;;AAED;EACE,gCAAgC;CACjC","file":"Navigation.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.root {\n  margin: 0;\n}\n\n.link {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.link,\n.link:active,\n.link:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.link:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.highlight {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.highlight:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.spacer {\n  color: rgba(255, 255, 255, 0.3);\n}\n"],"sourceRoot":"webpack://"}]);
-
-  // exports
-  exports.locals = {
-  	"root": "Navigation-root-Kev6U",
-  	"link": "Navigation-link-1-rhI",
-  	"highlight": "Navigation-highlight-g6k6K",
-  	"spacer": "Navigation-spacer-2KA91"
-  };
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Feedback/Feedback.js'; /**
-                                                                                                  * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                                  *
-                                                                                                  * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                                  *
-                                                                                                  * This source code is licensed under the MIT license found in the
-                                                                                                  * LICENSE.txt file in the root directory of this source tree.
-                                                                                                  */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _withStyles = __webpack_require__(28);
-
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-
-  var _Feedback = __webpack_require__(81);
-
-  var _Feedback2 = _interopRequireDefault(_Feedback);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var Feedback = function (_React$Component) {
-    (0, _inherits3.default)(Feedback, _React$Component);
-
-    function Feedback() {
-      (0, _classCallCheck3.default)(this, Feedback);
-      return (0, _possibleConstructorReturn3.default)(this, (Feedback.__proto__ || (0, _getPrototypeOf2.default)(Feedback)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(Feedback, [{
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          { className: _Feedback2.default.root, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 17
-            },
-            __self: this
-          },
-          _react2.default.createElement('div', { className: _Feedback2.default.container, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 18
-            },
-            __self: this
-          })
-        );
-      }
-    }]);
-    return Feedback;
-  }(_react2.default.Component);
-
-    exports.default = (0, _withStyles2.default)(_Feedback2.default)(Feedback);
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(82);
-      var insertCss = __webpack_require__(32);
-
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-
-      module.exports = content.locals || {};
-      module.exports._getContent = function() { return content; };
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-      
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Feedback.css", function() {
-          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Feedback.css");
-
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(31)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Feedback-root-2NP0J {\n  background: #f5f5f5;\n  color: #333;\n}\n\n.Feedback-container-2AyN4 {\n  margin: 0 auto;\n  padding: 20px 8px;\n  max-width: 1000px;\n  text-align: center;\n  font-size: 1.5em; /* ~24px */\n}\n\n.Feedback-link-17M03,\n.Feedback-link-17M03:active,\n.Feedback-link-17M03:hover,\n.Feedback-link-17M03:visited {\n  color: #333;\n  text-decoration: none;\n}\n\n.Feedback-link-17M03:hover {\n  text-decoration: underline;\n}\n\n.Feedback-spacer-2n9Qd {\n  padding-right: 15px;\n  padding-left: 15px;\n}\n", "", {"version":3,"sources":["/./components/Feedback/Feedback.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADnBD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;EACpC,mBAAmB;EACnB,iBAAiB,CAAC,WAAW;CAC9B;;AAED;;;;EAIE,YAAY;EACZ,sBAAsB;CACvB;;AAED;EACE,2BAA2B;CAC5B;;AAED;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Feedback.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n.root {\n  background: #f5f5f5;\n  color: #333;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 8px;\n  max-width: var(--max-content-width);\n  text-align: center;\n  font-size: 1.5em; /* ~24px */\n}\n\n.link,\n.link:active,\n.link:hover,\n.link:visited {\n  color: #333;\n  text-decoration: none;\n}\n\n.link:hover {\n  text-decoration: underline;\n}\n\n.spacer {\n  padding-right: 15px;\n  padding-left: 15px;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
-
-  // exports
-  exports.locals = {
-  	"root": "Feedback-root-2NP0J",
-  	"container": "Feedback-container-2AyN4",
-  	"link": "Feedback-link-17M03",
-  	"spacer": "Feedback-spacer-2n9Qd"
-  };
-
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _getPrototypeOf = __webpack_require__(20);
-
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-  var _classCallCheck2 = __webpack_require__(21);
-
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-  var _createClass2 = __webpack_require__(22);
-
-  var _createClass3 = _interopRequireDefault(_createClass2);
-
-  var _possibleConstructorReturn2 = __webpack_require__(23);
-
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-  var _inherits2 = __webpack_require__(24);
-
-  var _inherits3 = _interopRequireDefault(_inherits2);
-
-  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/Footer/Footer.js'; /**
-                                                                                              * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                              *
-                                                                                              * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                              *
-                                                                                              * This source code is licensed under the MIT license found in the
-                                                                                              * LICENSE.txt file in the root directory of this source tree.
-                                                                                              */
-
-  var _react = __webpack_require__(15);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _withStyles = __webpack_require__(28);
-
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-
-  var _Footer = __webpack_require__(84);
-
-  var _Footer2 = _interopRequireDefault(_Footer);
-
-  var _Link = __webpack_require__(72);
-
-  var _Link2 = _interopRequireDefault(_Link);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var Footer = function (_React$Component) {
-    (0, _inherits3.default)(Footer, _React$Component);
-
-    function Footer() {
-      (0, _classCallCheck3.default)(this, Footer);
-      return (0, _possibleConstructorReturn3.default)(this, (Footer.__proto__ || (0, _getPrototypeOf2.default)(Footer)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(Footer, [{
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          { className: _Footer2.default.root, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 18
-            },
-            __self: this
-          },
-          _react2.default.createElement(
-            'div',
-            { className: _Footer2.default.container, __source: {
-                fileName: _jsxFileName,
-                lineNumber: 19
-              },
-              __self: this
-            },
-            _react2.default.createElement(
-              'span',
-              { className: _Footer2.default.text, __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 20
-                },
-                __self: this
-              },
-              '\xA9 ',
-              new Date().getFullYear(),
-              ' - Michael Cooper, Tucson, AZ'
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: _Footer2.default.spacer, __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 21
-                },
-                __self: this
-              },
-              '\xB7'
-            ),
-            _react2.default.createElement(
-              _Link2.default,
-              { className: _Footer2.default.link, to: '/', __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 22
-                },
-                __self: this
-              },
-              'Home'
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: _Footer2.default.spacer, __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 23
-                },
-                __self: this
-              },
-              '\xB7'
-            ),
-            _react2.default.createElement(
-              _Link2.default,
-              { className: _Footer2.default.link, to: '/privacy', __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 24
-                },
-                __self: this
-              },
-              'Privacy'
-            )
-          )
-        );
-      }
-    }]);
-    return Footer;
-  }(_react2.default.Component);
-
-    exports.default = (0, _withStyles2.default)(_Footer2.default)(Footer);
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(85);
-      var insertCss = __webpack_require__(32);
-
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-
-      module.exports = content.locals || {};
-      module.exports._getContent = function() { return content; };
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-      
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Footer.css", function() {
-          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Footer.css");
-
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(31)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.Footer-root-3Jihw {\n  background: #333;\n  color: #fff;\n}\n\n.Footer-container-n1bVC {\n  margin: 0 auto;\n  padding: 20px 15px;\n  max-width: 1000px;\n  text-align: center;\n}\n\n.Footer-text-2mr6B {\n  color: rgba(255, 255, 255, 0.5);\n}\n\n.Footer-spacer-3HO-I {\n  color: rgba(255, 255, 255, 0.3);\n}\n\n.Footer-text-2mr6B,\n.Footer-link-1sUkm {\n  padding: 2px 5px;\n  font-size: 1em;\n}\n\n.Footer-link-1sUkm,\n.Footer-link-1sUkm:active,\n.Footer-link-1sUkm:visited {\n  color: rgba(255, 255, 255, 0.6);\n  text-decoration: none;\n}\n\n.Footer-link-1sUkm:hover {\n  color: rgba(255, 255, 255, 1);\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/Footer/Footer.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,iBAAiB;EACjB,YAAY;CACb;;AAED;EACE,eAAe;EACf,mBAAmB;EACnB,kBAAoC;EACpC,mBAAmB;CACpB;;AAED;EACE,gCAAgC;CACjC;;AAED;EACE,gCAAgC;CACjC;;AAED;;EAEE,iBAAiB;EACjB,eAAe;CAChB;;AAED;;;EAGE,gCAAgC;EAChC,sBAAsB;CACvB;;AAED;EACE,8BAA8B;CAC/B","file":"Footer.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.root {\n  background: #333;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 15px;\n  max-width: var(--max-content-width);\n  text-align: center;\n}\n\n.text {\n  color: rgba(255, 255, 255, 0.5);\n}\n\n.spacer {\n  color: rgba(255, 255, 255, 0.3);\n}\n\n.text,\n.link {\n  padding: 2px 5px;\n  font-size: 1em;\n}\n\n.link,\n.link:active,\n.link:visited {\n  color: rgba(255, 255, 255, 0.6);\n  text-decoration: none;\n}\n\n.link:hover {\n  color: rgba(255, 255, 255, 1);\n}\n"],"sourceRoot":"webpack://"}]);
-
-  // exports
-  exports.locals = {
-  	"root": "Footer-root-3Jihw",
-  	"container": "Footer-container-n1bVC",
-  	"text": "Footer-text-2mr6B",
-  	"spacer": "Footer-spacer-3HO-I",
-  	"link": "Footer-link-1sUkm"
   };
 
 /***/ },
@@ -3848,7 +4108,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -4075,7 +4335,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -4319,7 +4579,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -4599,7 +4859,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -4690,7 +4950,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _Layout = __webpack_require__(66);
+  var _Layout = __webpack_require__(57);
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -4901,108 +5161,6 @@ module.exports =
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
-
-/***/ },
-/* 107 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _graphql = __webpack_require__(47);
-
-  var _fetch = __webpack_require__(51);
-
-  var _fetch2 = _interopRequireDefault(_fetch);
-
-  var _NewsItemType = __webpack_require__(108);
-
-  var _NewsItemType2 = _interopRequireDefault(_NewsItemType);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  // React.js News Feed (RSS)
-  var url = 'http://ajax.googleapis.com/ajax/services/feed/load' + '?v=1.0&num=10&q=https://reactjsnews.com/feed.xml'; /**
-                                                                                                                        * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                                                                        *
-                                                                                                                        * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                                                                        *
-                                                                                                                        * This source code is licensed under the MIT license found in the
-                                                                                                                        * LICENSE.txt file in the root directory of this source tree.
-                                                                                                                        */
-
-  var items = [];
-  var lastFetchTask = void 0;
-  var lastFetchTime = new Date(1970, 0, 1);
-
-  var news = {
-    type: new _graphql.GraphQLList(_NewsItemType2.default),
-    resolve: function resolve() {
-      if (lastFetchTask) {
-        return lastFetchTask;
-      }
-
-      if (new Date() - lastFetchTime > 1000 * 60 * 10 /* 10 mins */) {
-          lastFetchTime = new Date();
-          lastFetchTask = (0, _fetch2.default)(url).then(function (response) {
-            return response.json();
-          }).then(function (data) {
-            if (data.responseStatus === 200) {
-              items = data.responseData.feed.entries;
-            }
-
-            return items;
-          }).finally(function () {
-            lastFetchTask = null;
-          });
-
-          if (items.length) {
-            return items;
-          }
-
-          return lastFetchTask;
-        }
-
-      return items;
-    }
-  };
-
-    exports.default = news;
-
-/***/ },
-/* 108 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _graphql = __webpack_require__(47);
-
-  var NewsItemType = new _graphql.GraphQLObjectType({
-    name: 'NewsItem',
-    fields: {
-      title: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
-      link: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
-      author: { type: _graphql.GraphQLString },
-      publishedDate: { type: new _graphql.GraphQLNonNull(_graphql.GraphQLString) },
-      contentSnippet: { type: _graphql.GraphQLString }
-    }
-  }); /**
-       * React Starter Kit (https://www.reactstarterkit.com/)
-       *
-       * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-       *
-       * This source code is licensed under the MIT license found in the
-       * LICENSE.txt file in the root directory of this source tree.
-       */
-
-    exports.default = NewsItemType;
 
 /***/ }
 /******/ ]);

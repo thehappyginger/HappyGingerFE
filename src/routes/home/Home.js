@@ -32,7 +32,7 @@ class Home extends React.Component {
                 <li>
                   <Link to="/minecraft">Minecraft Server Moniter/Console</Link>
                   <br />This is a small NodeJs app that I wrote to control a Minecraft
-                    Servr via a public REST API.
+                    Server via a public REST API.
                 </li>
               </ul>
               <h3>Documentation Links</h3>
@@ -40,7 +40,7 @@ class Home extends React.Component {
                 <li><a href="//facebook.github.io/react/" target="_blank" rel="noopener noreferrer">ReactJs Documenation</a></li>
                 <li><a href="//getbootstrap.com/css/" target="_blank" rel="noopener noreferrer">Bootstrap CSS Documenation</a></li>
                 <li><a href="//minecraft.gamepedia.com/Commands/" target="_blank" rel="noopener noreferrer">Minecraft Console Commands</a></li>
-                <li><a href="//https://github.com/kriasoft/react-starter-kit" target="_blank" rel="noopener noreferrer">ReactJs Boilerplate</a></li>
+                <li><a href="//github.com/kriasoft/react-starter-kit" target="_blank" rel="noopener noreferrer">ReactJs Boilerplate</a></li>
               </ul>
               <h3>Commonly Used Websites</h3>
               <ul>
@@ -50,7 +50,7 @@ class Home extends React.Component {
               </ul>
             </div>
             <div className="col-md-5">
-              <Weather weather_location="Tucson, AZ" />
+              <Weather weather_location="Tucson, AZ" show_extended_forcast />
               <Weather weather_location="Summerhaven, AZ" />
             </div>
           </div>

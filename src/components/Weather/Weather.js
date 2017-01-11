@@ -5,7 +5,9 @@ import styles from './Weather.css';
 
 class Weather extends React.Component {
   constructor(props) {
-    super(props); // weather_location (FORMAT: <city>, <two letter state>; EX: Tucson, AZ)
+    super(props);
+    // weather_location (FORMAT: <city>, <two letter state>; EX: Tucson, AZ)
+    // show_extended_forcast (FORMAT: true/false; DEFAUT: false)
 
     this.state = {
       weather_data: {
@@ -52,6 +54,29 @@ class Weather extends React.Component {
     }
   }
 
+  extendedForcast(weatherInfo) {
+    if (this.props.show_extended_forcast) {
+      return (
+        <div className="row">
+          <div className="col-sm-12">
+            <hr />
+            <h5>6 Day Forcast</h5>
+          </div>
+          {[...Array(6)].map((x, i) =>
+            <div className="col-sm-4" key={i}>
+              <p>
+                <strong>{weatherInfo.item.forecast[i].date}</strong><br />
+                High: <strong>{weatherInfo.item.forecast[i].low}&deg;</strong><br />
+                Low: <strong>{weatherInfo.item.forecast[i].high}&deg;</strong><br />
+                <strong>{weatherInfo.item.forecast[i].text}</strong>
+              </p>
+            </div>,
+          )}
+        </div>
+      );
+    }
+  }
+
   formatWeather() {
     if (this.state.weather_data.isLoading) {
       return 'Loading...';
@@ -63,32 +88,35 @@ class Weather extends React.Component {
 
     const weatherInfo = this.state.weather_data.data;
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <h2 className="location">{weatherInfo.location.city}, {weatherInfo.location.region}</h2>
-          <div className="low">PubDate: {weatherInfo.item.pubDate}</div>
-          <hr />
+      <div>
+        <h2 className="location">{weatherInfo.location.city}, {weatherInfo.location.region}</h2>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="low">Last Updated: <strong>{weatherInfo.item.pubDate}</strong></div>
+            <hr />
+          </div>
+          <div className="col-md-6">
+            <div className="current_temp">Temp: <strong>{weatherInfo.item.condition.temp}&deg;</strong></div>
+            <div className="current_wind_chill">Wind Chill: <strong>{weatherInfo.wind.chill}&deg;</strong></div>
+            <div className="current_wind_speed">Wind Speed: <strong>{weatherInfo.wind.speed}mph</strong></div>
+            <div className="current_condtion">Current Condition: <strong>{weatherInfo.item.condition.text}</strong></div>
+          </div>
+          <div className="col-md-6">
+            <div className="low">Lat: <strong>{weatherInfo.item.lat}</strong></div>
+            <div className="long">Long: <strong>{weatherInfo.item.long}</strong></div>
+            <hr />
+          </div>
+          <div className="col-md-6">
+            <div className="sunrise">Sunrise: <strong>{weatherInfo.astronomy.sunrise}</strong></div>
+            <div className="sunset">Sunset: <strong>{weatherInfo.astronomy.sunset}</strong></div>
+          </div>
         </div>
-        <div className="col-md-12">
-          <div className="long">Current Temp: <strong>{weatherInfo.item.condition.temp}&deg;</strong></div>
-          <div className="long">Current Wind Chill: <strong>{weatherInfo.wind.chill}&deg;</strong></div>
-          <div className="long">Current Wind Speed: <strong>{weatherInfo.wind.speed}mph</strong></div>
-          <hr />
-        </div>
-        <div className="col-md-12">
-          <div className="low">Lat: {weatherInfo.item.lat}</div>
-          <div className="long">Long: {weatherInfo.item.long}</div>
-        </div>
-        <div className="col-md-12">
-          <div className="low">Sunrise: {weatherInfo.astronomy.sunrise}</div>
-          <div className="long">Sunset: {weatherInfo.astronomy.sunset}</div>
-        </div>
+        {this.extendedForcast(weatherInfo)}
       </div>
     );
   }
 
   render() {
-    console.log('Weather App Loaded.');
     return (
       <div className={styles.root}>
         {this.formatWeather()}
@@ -97,7 +125,7 @@ class Weather extends React.Component {
   }
 }
 
-Weather.propTypes = { weather_location: React.PropTypes.string };
-Weather.defaultProps = { weather_location: 'Tucson, AZ' };
+Weather.propTypes = { weather_location: React.PropTypes.string, show_extended_forcast: React.PropTypes.bool };
+Weather.defaultProps = { weather_location: 'Tucson, AZ', show_extended_forcast: false };
 
 export default withStyles(styles)(Weather);

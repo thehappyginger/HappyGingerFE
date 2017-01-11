@@ -10,7 +10,7 @@
 @import '../variables.css';
 
 :root {
-  --brand-color: #61dafb;
+  --brand-color: #acbae8;
 }
 
 .root {
@@ -24,10 +24,18 @@
   max-width: var(--max-content-width);
 }
 
-.brand {
+.brand,
+.brand:visited,
+.brand:active,
+.brand:focus {
   color: color(var(--brand-color) lightness(+10%));
   text-decoration: none;
   font-size: 1.75em; /* ~28px */
+}
+
+.brand:hover {
+  color: color(var(--brand-color) lightness(+5%));
+  text-decoration: none;
 }
 
 .brandTxt {

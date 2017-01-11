@@ -159,7 +159,7 @@ module.exports =
 
   var _routes2 = _interopRequireDefault(_routes);
 
-  var _assets = __webpack_require__(106);
+  var _assets = __webpack_require__(107);
 
   var _assets2 = _interopRequireDefault(_assets);
 
@@ -2167,10 +2167,10 @@ module.exports =
     path: '/',
 
     // Keep in mind, routes are evaluated in order
-    children: [__webpack_require__(56).default, __webpack_require__(86).default, __webpack_require__(90).default, __webpack_require__(94).default, __webpack_require__(100).default,
+    children: [__webpack_require__(56).default, __webpack_require__(87).default, __webpack_require__(91).default, __webpack_require__(95).default, __webpack_require__(101).default, __webpack_require__(108).default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
-    __webpack_require__(102).default],
+    __webpack_require__(103).default],
 
     action: function action(_ref) {
       var _this = this;
@@ -2633,7 +2633,7 @@ module.exports =
 
 
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Header-root-3Gi4A {\n  background: #394a88;\n  color: #fff;\n}\n\n.Header-container-1rGbt {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: 1000px;\n}\n\n.Header-brand-19lnX {\n  color: rgb(146, 229, 252);\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.Header-brandTxt-2mixT {\n  margin-left: 10px;\n}\n\n.Header-nav-1zCyG {\n  float: right;\n  margin-top: 6px;\n}\n\n.Header-banner-2Lc2c {\n  text-align: center;\n}\n\n.Header-bannerTitle-2Qzpm {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.Header-bannerDesc-3mmkW {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n", "", {"version":3,"sources":["/./components/Header/Header.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADfD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,gBAAgB;EAChB,kBAAoC;CACrC;;AAED;EACE,0BAAiD;EACjD,sBAAsB;EACtB,kBAAkB,CAAC,WAAW;CAC/B;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB;CACjB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,UAAU;EACV,cAAc;EACd,oBAAoB;EACpB,eAAe;EACf,iBAAiB;CAClB;;AAED;EACE,WAAW;EACX,gCAAgC;EAChC,kBAAkB;EAClB,UAAU;CACX","file":"Header.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n:root {\n  --brand-color: #61dafb;\n}\n\n.root {\n  background: #394a88;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: var(--max-content-width);\n}\n\n.brand {\n  color: color(var(--brand-color) lightness(+10%));\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.brandTxt {\n  margin-left: 10px;\n}\n\n.nav {\n  float: right;\n  margin-top: 6px;\n}\n\n.banner {\n  text-align: center;\n}\n\n.bannerTitle {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.bannerDesc {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Header-root-3Gi4A {\n  background: #394a88;\n  color: #fff;\n}\n\n.Header-container-1rGbt {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: 1000px;\n}\n\n.Header-brand-19lnX,\n.Header-brand-19lnX:visited,\n.Header-brand-19lnX:active,\n.Header-brand-19lnX:focus {\n  color: rgb(211, 218, 243);\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.Header-brand-19lnX:hover {\n  color: rgb(191, 202, 237);\n  text-decoration: none;\n}\n\n.Header-brandTxt-2mixT {\n  margin-left: 10px;\n}\n\n.Header-nav-1zCyG {\n  float: right;\n  margin-top: 6px;\n}\n\n.Header-banner-2Lc2c {\n  text-align: center;\n}\n\n.Header-bannerTitle-2Qzpm {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.Header-bannerDesc-3mmkW {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n", "", {"version":3,"sources":["/./components/Header/Header.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADfD;EACE,oBAAoB;EACpB,YAAY;CACb;;AAED;EACE,eAAe;EACf,gBAAgB;EAChB,kBAAoC;CACrC;;AAED;;;;EAIE,0BAAiD;EACjD,sBAAsB;EACtB,kBAAkB,CAAC,WAAW;CAC/B;;AAED;EACE,0BAAgD;EAChD,sBAAsB;CACvB;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB;CACjB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,UAAU;EACV,cAAc;EACd,oBAAoB;EACpB,eAAe;EACf,iBAAiB;CAClB;;AAED;EACE,WAAW;EACX,gCAAgC;EAChC,kBAAkB;EAClB,UAAU;CACX","file":"Header.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../variables.css';\n\n:root {\n  --brand-color: #acbae8;\n}\n\n.root {\n  background: #394a88;\n  color: #fff;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 20px 0;\n  max-width: var(--max-content-width);\n}\n\n.brand,\n.brand:visited,\n.brand:active,\n.brand:focus {\n  color: color(var(--brand-color) lightness(+10%));\n  text-decoration: none;\n  font-size: 1.75em; /* ~28px */\n}\n\n.brand:hover {\n  color: color(var(--brand-color) lightness(+5%));\n  text-decoration: none;\n}\n\n.brandTxt {\n  margin-left: 10px;\n}\n\n.nav {\n  float: right;\n  margin-top: 6px;\n}\n\n.banner {\n  text-align: center;\n}\n\n.bannerTitle {\n  margin: 0;\n  padding: 10px;\n  font-weight: normal;\n  font-size: 4em;\n  line-height: 1em;\n}\n\n.bannerDesc {\n  padding: 0;\n  color: rgba(255, 255, 255, 0.5);\n  font-size: 1.25em;\n  margin: 0;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
 
   // exports
   exports.locals = {
@@ -3375,11 +3375,11 @@ module.exports =
 
   var _Weather2 = _interopRequireDefault(_Weather);
 
-  var _MinecraftMonit = __webpack_require__(81);
+  var _Link = __webpack_require__(63);
 
-  var _MinecraftMonit2 = _interopRequireDefault(_MinecraftMonit);
+  var _Link2 = _interopRequireDefault(_Link);
 
-  var _Home = __webpack_require__(84);
+  var _Home = __webpack_require__(85);
 
   var _Home2 = _interopRequireDefault(_Home);
 
@@ -3410,7 +3410,7 @@ module.exports =
           },
           _react2.default.createElement(
             'div',
-            { className: 'container', __source: {
+            { className: _Home2.default.container, __source: {
                 fileName: _jsxFileName,
                 lineNumber: 25
               },
@@ -3426,7 +3426,7 @@ module.exports =
               },
               _react2.default.createElement(
                 'div',
-                { className: 'col-md-8', __source: {
+                { className: 'col-md-7', __source: {
                     fileName: _jsxFileName,
                     lineNumber: 27
                   },
@@ -3441,33 +3441,277 @@ module.exports =
                     },
                     __self: this
                   },
-                  'HappyGinger Datahub'
+                  'Michael Coooper\'s Homepage'
                 ),
-                _react2.default.createElement(_MinecraftMonit2.default, {
-                  __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 29
+                _react2.default.createElement(
+                  'h3',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 29
+                    },
+                    __self: this
                   },
-                  __self: this
-                })
+                  'Quick Project Links'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 30
+                    },
+                    __self: this
+                  },
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 31
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: 'https://github.com/thehappyginger', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 31
+                        },
+                        __self: this
+                      },
+                      'HappyGinger Github Repo'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 32
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      _Link2.default,
+                      { to: '/minecraft', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 33
+                        },
+                        __self: this
+                      },
+                      'Minecraft Server Moniter/Console'
+                    ),
+                    _react2.default.createElement('br', {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 34
+                      },
+                      __self: this
+                    }),
+                    'This is a small NodeJs app that I wrote to control a Minecraft Servr via a public REST API.'
+                  )
+                ),
+                _react2.default.createElement(
+                  'h3',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 38
+                    },
+                    __self: this
+                  },
+                  'Documentation Links'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 39
+                    },
+                    __self: this
+                  },
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 40
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//facebook.github.io/react/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 40
+                        },
+                        __self: this
+                      },
+                      'ReactJs Documenation'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 41
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//getbootstrap.com/css/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 41
+                        },
+                        __self: this
+                      },
+                      'Bootstrap CSS Documenation'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 42
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//minecraft.gamepedia.com/Commands/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 42
+                        },
+                        __self: this
+                      },
+                      'Minecraft Console Commands'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 43
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//https://github.com/kriasoft/react-starter-kit', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 43
+                        },
+                        __self: this
+                      },
+                      'ReactJs Boilerplate'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'h3',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 45
+                    },
+                    __self: this
+                  },
+                  'Commonly Used Websites'
+                ),
+                _react2.default.createElement(
+                  'ul',
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 46
+                    },
+                    __self: this
+                  },
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 47
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//www.google.com/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 47
+                        },
+                        __self: this
+                      },
+                      'Google'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 48
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//www.amazon.com/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 48
+                        },
+                        __self: this
+                      },
+                      'Amazon'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    {
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 49
+                      },
+                      __self: this
+                    },
+                    _react2.default.createElement(
+                      'a',
+                      { href: '//www.ebay.com/', target: '_blank', rel: 'noopener noreferrer', __source: {
+                          fileName: _jsxFileName,
+                          lineNumber: 49
+                        },
+                        __self: this
+                      },
+                      'Ebay'
+                    )
+                  )
+                )
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'col-md-4', __source: {
+                { className: 'col-md-5', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 31
+                    lineNumber: 52
                   },
                   __self: this
                 },
-                _react2.default.createElement(_Weather2.default, { weather_location: 'Summerhaven, AZ', __source: {
+                _react2.default.createElement(_Weather2.default, { weather_location: 'Tucson, AZ', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 32
+                    lineNumber: 53
                   },
                   __self: this
                 }),
-                _react2.default.createElement(_Weather2.default, { weather_location: 'Tucson, AZ', __source: {
+                _react2.default.createElement(_Weather2.default, { weather_location: 'Summerhaven, AZ', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 33
+                    lineNumber: 54
                   },
                   __self: this
                 })
@@ -3869,7 +4113,7 @@ module.exports =
 
 
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.Weather-root-3uRVF {\n  padding-bottom: 20px;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/Weather/Weather.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,qBAAqB;CACtB","file":"Weather.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.root {\n  padding-bottom: 20px;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.Weather-root-3uRVF {\n  padding: 20px 0;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/Weather/Weather.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,gBAAgB;CACjB","file":"Weather.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.root {\n  padding: 20px 0;\n}\n"],"sourceRoot":"webpack://"}]);
 
   // exports
   exports.locals = {
@@ -3885,6 +4129,10 @@ module.exports =
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+
+  var _defineProperty2 = __webpack_require__(82);
+
+  var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
   var _getPrototypeOf = __webpack_require__(20);
 
@@ -3920,7 +4168,7 @@ module.exports =
 
   var _fetch2 = _interopRequireDefault(_fetch);
 
-  var _MinecraftMonit = __webpack_require__(82);
+  var _MinecraftMonit = __webpack_require__(83);
 
   var _MinecraftMonit2 = _interopRequireDefault(_MinecraftMonit);
 
@@ -3932,52 +4180,179 @@ module.exports =
     function MinecraftMonit(props) {
       (0, _classCallCheck3.default)(this, MinecraftMonit);
 
+      // command
+
       var _this = (0, _possibleConstructorReturn3.default)(this, (MinecraftMonit.__proto__ || (0, _getPrototypeOf2.default)(MinecraftMonit)).call(this, props));
 
       _this.state = {
-        returnMsg: ''
+        serverCommand: '',
+        returnMsg: []
       };
+
+      _this.handleChange = _this.handleChange.bind(_this);
+      _this.handleSubmit = _this.handleSubmit.bind(_this);
       return _this;
     }
 
     (0, _createClass3.default)(MinecraftMonit, [{
+      key: 'handleChange',
+      value: function handleChange(event) {
+        this.setState({ serverCommand: event.target.value });
+      }
+    }, {
+      key: 'handleSubmit',
+      value: function handleSubmit(event) {
+        this.runCommand(this.state.serverCommand);
+        this.setState({ serverCommand: '' });
+        event.preventDefault();
+      }
+    }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        this.runCommand('list');
+        this.runCommand('/list');
+      }
+    }, {
+      key: 'componentDidUpdate',
+      value: function componentDidUpdate() {
+        this.refs.outputContainer_console.scrollTop = this.refs.outputContainer_console.scrollHeight;
       }
     }, {
       key: 'runCommand',
       value: function runCommand(command) {
         var _this2 = this;
 
-        if (command) {
-          var url = 'https://www.happyginger.net/api/v1/minecraft?Body=/';
-          var _command = 'list';
+        var url = 'https://www.happyginger.net/api/v1/minecraft?Body=';
 
-          (0, _fetch2.default)('' + url + _command).then(function (response) {
-            return response.json();
-          }).then(function (response) {
-            return _this2.setState({ returnMsg: response.data });
-          }).catch(function (err) {
-            return _this2.setState({
-              returnMsg: err.message
-            });
-          });
-        }
+        (0, _fetch2.default)('' + url + command).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          var returnMsg = _this2.state.returnMsg;
+          returnMsg.push(response.data);
+          _this2.setState({ returnMsg: returnMsg });
+        }).catch(function (err) {
+          var returnMsg = [err.message];
+          _this2.setState({ returnMsg: returnMsg });
+        });
       }
     }, {
-      key: 'render',
-      value: function render() {
+      key: 'renderOutput',
+      value: function renderOutput() {
+        var _this3 = this;
+
         return _react2.default.createElement(
           'div',
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 34
+              lineNumber: 55
             },
             __self: this
           },
-          this.state.returnMsg
+          this.state.returnMsg.map(function (msg, index) {
+            return _react2.default.createElement(
+              'div',
+              { className: _MinecraftMonit2.default.outputContainer_console_entry, key: index, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 57
+                },
+                __self: _this3
+              },
+              msg.split('\n').map(function (msg, index) {
+                return _react2.default.createElement(
+                  'div',
+                  { key: index, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 59
+                    },
+                    __self: _this3
+                  },
+                  msg,
+                  _react2.default.createElement('br', {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 60
+                    },
+                    __self: _this3
+                  })
+                );
+              })
+            );
+          })
+        );
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _React$createElement;
+
+        return _react2.default.createElement(
+          'div',
+          { className: _MinecraftMonit2.default.outputContainer, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 71
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            'div',
+            { ref: 'outputContainer_console', className: _MinecraftMonit2.default.outputContainer_console, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 72
+              },
+              __self: this
+            },
+            this.renderOutput()
+          ),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.handleSubmit, className: _MinecraftMonit2.default.outputContainer_form, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 75
+              },
+              __self: this
+            },
+            _react2.default.createElement(
+              'div',
+              { className: 'input-group row', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 76
+                },
+                __self: this
+              },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-10', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 77
+                  },
+                  __self: this
+                },
+                _react2.default.createElement('input', (_React$createElement = { type: 'text', id: 'outputContainer_form', className: 'form-control' }, (0, _defineProperty3.default)(_React$createElement, 'type', 'text'), (0, _defineProperty3.default)(_React$createElement, 'value', this.state.serverCommand), (0, _defineProperty3.default)(_React$createElement, 'onChange', this.handleChange), (0, _defineProperty3.default)(_React$createElement, '__source', {
+                  fileName: _jsxFileName,
+                  lineNumber: 78
+                }), (0, _defineProperty3.default)(_React$createElement, '__self', this), _React$createElement))
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-2', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 80
+                  },
+                  __self: this
+                },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-primary', type: 'submit', __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 81
+                    },
+                    __self: this
+                  },
+                  'Go!'
+                )
+              )
+            )
+          )
         );
       }
     }]);
@@ -3988,10 +4363,16 @@ module.exports =
 
 /***/ },
 /* 82 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/defineProperty");
+
+/***/ },
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(83);
+      var content = __webpack_require__(84);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -4022,7 +4403,7 @@ module.exports =
     
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -4030,17 +4411,23 @@ module.exports =
 
 
   // module
-  exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"MinecraftMonit.css","sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.MinecraftMonit-no_gutters-1rgvh {\n  margin-right: 0;\n  margin-left: 0;\n}\n\n.MinecraftMonit-no_gutters-1rgvh > [class^='col-'],\n.MinecraftMonit-no_gutters-1rgvh > [class*='col-'] {\n  padding-right: 0;\n  padding-left: 0;\n}\n\n.MinecraftMonit-outputContainer-1RkoV {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.MinecraftMonit-outputContainer_console-RloWq {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.MinecraftMonit-outputContainer_console_entry-3uwXJ {\n  padding-bottom: 0;\n}\n\n.MinecraftMonit-outputContainer_form-1fa6P {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/MinecraftMoniter/MinecraftMonit.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;;EAEE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,qBAAqB;CACtB;;AAED;EACE,cAAc;EACd,mBAAmB;CACpB;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,mBAAmB;EACnB,UAAU;CACX","file":"MinecraftMonit.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.no_gutters {\n  margin-right: 0;\n  margin-left: 0;\n}\n\n.no_gutters > [class^='col-'],\n.no_gutters > [class*='col-'] {\n  padding-right: 0;\n  padding-left: 0;\n}\n\n.outputContainer {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.outputContainer_console {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.outputContainer_console_entry {\n  padding-bottom: 0;\n}\n\n.outputContainer_form {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n"],"sourceRoot":"webpack://"}]);
 
   // exports
-
+  exports.locals = {
+  	"no_gutters": "MinecraftMonit-no_gutters-1rgvh",
+  	"outputContainer": "MinecraftMonit-outputContainer-1RkoV",
+  	"outputContainer_console": "MinecraftMonit-outputContainer_console-RloWq",
+  	"outputContainer_console_entry": "MinecraftMonit-outputContainer_console_entry-3uwXJ",
+  	"outputContainer_form": "MinecraftMonit-outputContainer_form-1fa6P"
+  };
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(85);
+      var content = __webpack_require__(86);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -4071,7 +4458,7 @@ module.exports =
     
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -4079,15 +4466,16 @@ module.exports =
 
 
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Home-root-2IMq2 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n", "", {"version":3,"sources":["/./routes/home/Home.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB","file":"Home.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.Home-root-2IMq2 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Home-container-2Yejq {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./routes/home/Home.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"Home.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
 
   // exports
   exports.locals = {
-  	"root": "Home-root-2IMq2"
+  	"root": "Home-root-2IMq2",
+  	"container": "Home-container-2Yejq"
   };
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4112,7 +4500,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _Contact = __webpack_require__(87);
+  var _Contact = __webpack_require__(88);
 
   var _Contact2 = _interopRequireDefault(_Contact);
 
@@ -4148,7 +4536,7 @@ module.exports =
     };
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4194,7 +4582,7 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _Contact = __webpack_require__(88);
+  var _Contact = __webpack_require__(89);
 
   var _Contact2 = _interopRequireDefault(_Contact);
 
@@ -4262,11 +4650,11 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_Contact2.default)(Contact);
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(89);
+      var content = __webpack_require__(90);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -4297,7 +4685,7 @@ module.exports =
     
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -4314,7 +4702,7 @@ module.exports =
   };
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4339,7 +4727,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _Register = __webpack_require__(91);
+  var _Register = __webpack_require__(92);
 
   var _Register2 = _interopRequireDefault(_Register);
 
@@ -4375,7 +4763,7 @@ module.exports =
     };
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4421,7 +4809,7 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _Register = __webpack_require__(92);
+  var _Register = __webpack_require__(93);
 
   var _Register2 = _interopRequireDefault(_Register);
 
@@ -4489,11 +4877,11 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_Register2.default)(Register);
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(93);
+      var content = __webpack_require__(94);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -4524,7 +4912,7 @@ module.exports =
     
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -4541,7 +4929,7 @@ module.exports =
   };
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4558,7 +4946,7 @@ module.exports =
 
   var _extends3 = _interopRequireDefault(_extends2);
 
-  var _promise = __webpack_require__(95);
+  var _promise = __webpack_require__(96);
 
   var _promise2 = _interopRequireDefault(_promise);
 
@@ -4583,7 +4971,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _Page = __webpack_require__(96);
+  var _Page = __webpack_require__(97);
 
   var _Page2 = _interopRequireDefault(_Page);
 
@@ -4605,7 +4993,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    resolve(__webpack_require__(99));
+                    resolve(__webpack_require__(100));
                   }(__webpack_require__));
                 });
 
@@ -4643,13 +5031,13 @@ module.exports =
     };
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4695,7 +5083,7 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _Page = __webpack_require__(97);
+  var _Page = __webpack_require__(98);
 
   var _Page2 = _interopRequireDefault(_Page);
 
@@ -4763,11 +5151,11 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_Page2.default)(Page);
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(98);
+      var content = __webpack_require__(99);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -4798,7 +5186,7 @@ module.exports =
     
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -4815,13 +5203,13 @@ module.exports =
   };
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports) {
 
   module.exports = {"title":"About Us","component":"ContentPage","html":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat\ntortor fermentum mi fermentum dignissim. Nullam vel ipsum ut ligula elementum\nlobortis. Maecenas aliquam, massa laoreet lacinia pretium, nisi urna venenatis\ntortor, nec imperdiet tellus libero efficitur metus. Fusce semper posuere\nligula, et facilisis metus bibendum interdum. Mauris at mauris sit amet sem\npharetra commodo a eu leo. Nam at est non risus cursus maximus. Nam feugiat\naugue libero, id consectetur tortor bibendum non. Quisque nec fringilla lorem.\nNullam efficitur vulputate mauris, nec maximus leo dignissim id.</p>\n<p>In hac habitasse platea dictumst. Duis sagittis dui ac ex suscipit maximus.\nMorbi pellentesque venenatis felis sed convallis. Nulla varius, nibh vitae\nplacerat tempus, mauris sem elementum ipsum, eget sollicitudin nisl est vel\npurus. Fusce malesuada odio velit, non cursus leo fermentum id. Cras pharetra\nsodales fringilla. Etiam quis est a dolor egestas pellentesque. Maecenas non\nscelerisque purus, congue cursus arcu. Donec vel dapibus mi. Mauris maximus\nposuere placerat. Sed et libero eu nibh tristique mollis a eget lectus. Donec\ninterdum augue sollicitudin vehicula hendrerit. Vivamus justo orci, molestie\nac sollicitudin ac, lobortis at tellus. Etiam rhoncus ullamcorper risus eu\ntempor. Sed porttitor, neque ac efficitur gravida, arcu lacus pharetra dui, in\nconsequat elit tellus auctor nulla. Donec placerat elementum diam, vitae\nimperdiet lectus luctus at.</p>\n<p>Nullam eu feugiat mi. Quisque nec tristique nisl, dignissim dictum leo. Nam\nnon quam nisi. Donec rutrum turpis ac diam blandit, id pulvinar mauris\nsuscipit. Pellentesque tincidunt libero ultricies risus iaculis, sit amet\nconsequat velit blandit. Fusce quis varius nulla. Nullam nisi nisi, suscipit\nut magna quis, feugiat porta nibh. Sed id enim lectus. Suspendisse elementum\njusto sapien, sit amet consequat orci accumsan et. Aliquam ornare ullamcorper\nsem sed finibus. Nullam ac lacus pulvinar, egestas felis ut, accumsan est.</p>\n<p>Pellentesque sagittis vehicula sem quis luctus. Proin sodales magna in lorem\nhendrerit aliquam. Integer eu varius orci. Vestibulum ante ipsum primis in\nfaucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum\nprimis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut at mauris\nnibh. Suspendisse maximus ac eros at vestibulum.</p>\n<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque egestas\ntortor et dui consequat faucibus. Nunc vitae odio ornare, venenatis ligula a,\nvulputate nisl. Aenean congue varius ex, sit amet bibendum odio posuere at.\nNulla facilisi. In finibus, nulla vitae tincidunt ornare, sapien nulla\nfermentum mauris, sed consectetur tortor arcu eget arcu. Vestibulum vel quam\nenim.</p>\n"};
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4838,7 +5226,7 @@ module.exports =
 
   var _extends3 = _interopRequireDefault(_extends2);
 
-  var _promise = __webpack_require__(95);
+  var _promise = __webpack_require__(96);
 
   var _promise2 = _interopRequireDefault(_promise);
 
@@ -4863,7 +5251,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _Page = __webpack_require__(96);
+  var _Page = __webpack_require__(97);
 
   var _Page2 = _interopRequireDefault(_Page);
 
@@ -4885,7 +5273,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    resolve(__webpack_require__(101));
+                    resolve(__webpack_require__(102));
                   }(__webpack_require__));
                 });
 
@@ -4923,13 +5311,13 @@ module.exports =
     };
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports) {
 
   module.exports = {"title":"Privacy Policy","html":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat\ntortor fermentum mi fermentum dignissim. Nullam vel ipsum ut ligula elementum\nlobortis. Maecenas aliquam, massa laoreet lacinia pretium, nisi urna venenatis\ntortor, nec imperdiet tellus libero efficitur metus. Fusce semper posuere\nligula, et facilisis metus bibendum interdum. Mauris at mauris sit amet sem\npharetra commodo a eu leo. Nam at est non risus cursus maximus. Nam feugiat\naugue libero, id consectetur tortor bibendum non. Quisque nec fringilla lorem.\nNullam efficitur vulputate mauris, nec maximus leo dignissim id.</p>\n<p>In hac habitasse platea dictumst. Duis sagittis dui ac ex suscipit maximus.\nMorbi pellentesque venenatis felis sed convallis. Nulla varius, nibh vitae\nplacerat tempus, mauris sem elementum ipsum, eget sollicitudin nisl est vel\npurus. Fusce malesuada odio velit, non cursus leo fermentum id. Cras pharetra\nsodales fringilla. Etiam quis est a dolor egestas pellentesque. Maecenas non\nscelerisque purus, congue cursus arcu. Donec vel dapibus mi. Mauris maximus\nposuere placerat. Sed et libero eu nibh tristique mollis a eget lectus. Donec\ninterdum augue sollicitudin vehicula hendrerit. Vivamus justo orci, molestie\nac sollicitudin ac, lobortis at tellus. Etiam rhoncus ullamcorper risus eu\ntempor. Sed porttitor, neque ac efficitur gravida, arcu lacus pharetra dui, in\nconsequat elit tellus auctor nulla. Donec placerat elementum diam, vitae\nimperdiet lectus luctus at.</p>\n<p>Nullam eu feugiat mi. Quisque nec tristique nisl, dignissim dictum leo. Nam\nnon quam nisi. Donec rutrum turpis ac diam blandit, id pulvinar mauris\nsuscipit. Pellentesque tincidunt libero ultricies risus iaculis, sit amet\nconsequat velit blandit. Fusce quis varius nulla. Nullam nisi nisi, suscipit\nut magna quis, feugiat porta nibh. Sed id enim lectus. Suspendisse elementum\njusto sapien, sit amet consequat orci accumsan et. Aliquam ornare ullamcorper\nsem sed finibus. Nullam ac lacus pulvinar, egestas felis ut, accumsan est.</p>\n<p>Pellentesque sagittis vehicula sem quis luctus. Proin sodales magna in lorem\nhendrerit aliquam. Integer eu varius orci. Vestibulum ante ipsum primis in\nfaucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum\nprimis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut at mauris\nnibh. Suspendisse maximus ac eros at vestibulum.</p>\n<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque egestas\ntortor et dui consequat faucibus. Nunc vitae odio ornare, venenatis ligula a,\nvulputate nisl. Aenean congue varius ex, sit amet bibendum odio posuere at.\nNulla facilisi. In finibus, nulla vitae tincidunt ornare, sapien nulla\nfermentum mauris, sed consectetur tortor arcu eget arcu. Vestibulum vel quam\nenim.</p>\n"};
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4954,7 +5342,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _NotFound = __webpack_require__(103);
+  var _NotFound = __webpack_require__(104);
 
   var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -4991,7 +5379,7 @@ module.exports =
     };
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5037,7 +5425,7 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _NotFound = __webpack_require__(104);
+  var _NotFound = __webpack_require__(105);
 
   var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -5105,11 +5493,11 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_NotFound2.default)(NotFound);
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(105);
+      var content = __webpack_require__(106);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -5140,7 +5528,7 @@ module.exports =
     
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -5157,10 +5545,237 @@ module.exports =
   };
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
+
+/***/ },
+/* 108 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/routes/minecraft/index.js'; /**
+                                                                                            * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                            *
+                                                                                            * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                            *
+                                                                                            * This source code is licensed under the MIT license found in the
+                                                                                            * LICENSE.txt file in the root directory of this source tree.
+                                                                                            */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _Layout = __webpack_require__(57);
+
+  var _Layout2 = _interopRequireDefault(_Layout);
+
+  var _Minecraft = __webpack_require__(109);
+
+  var _Minecraft2 = _interopRequireDefault(_Minecraft);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var title = 'Minecraft Server Moniter/Console';
+
+  exports.default = {
+
+    path: '/minecraft',
+
+    action: function action() {
+      return {
+        title: title,
+        component: _react2.default.createElement(
+          _Layout2.default,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            },
+            __self: this
+          },
+          _react2.default.createElement(_Minecraft2.default, { title: title, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            },
+            __self: this
+          })
+        )
+      };
+    }
+    };
+
+/***/ },
+/* 109 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/routes/minecraft/Minecraft.js'; /**
+                                                                                                * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                                *
+                                                                                                * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                                *
+                                                                                                * This source code is licensed under the MIT license found in the
+                                                                                                * LICENSE.txt file in the root directory of this source tree.
+                                                                                                */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _Minecraft = __webpack_require__(110);
+
+  var _Minecraft2 = _interopRequireDefault(_Minecraft);
+
+  var _MinecraftMonit = __webpack_require__(81);
+
+  var _MinecraftMonit2 = _interopRequireDefault(_MinecraftMonit);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var Minecraft = function (_React$Component) {
+    (0, _inherits3.default)(Minecraft, _React$Component);
+
+    function Minecraft() {
+      (0, _classCallCheck3.default)(this, Minecraft);
+      return (0, _possibleConstructorReturn3.default)(this, (Minecraft.__proto__ || (0, _getPrototypeOf2.default)(Minecraft)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Minecraft, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: _Minecraft2.default.root, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 22
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            'div',
+            { className: _Minecraft2.default.container, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              },
+              __self: this
+            },
+            _react2.default.createElement(
+              'h1',
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                },
+                __self: this
+              },
+              this.props.title
+            ),
+            _react2.default.createElement(_MinecraftMonit2.default, {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 25
+              },
+              __self: this
+            })
+          )
+        );
+      }
+    }]);
+    return Minecraft;
+  }(_react2.default.Component);
+
+  Minecraft.propTypes = {
+    title: _react.PropTypes.string.isRequired
+  };
+    exports.default = (0, _withStyles2.default)(_Minecraft2.default)(Minecraft);
+
+/***/ },
+/* 110 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(111);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Minecraft.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./Minecraft.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 111 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.Minecraft-root-1G1_9 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Minecraft-container-1-zUF {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./routes/minecraft/Minecraft.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"Minecraft.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "Minecraft-root-1G1_9",
+  	"container": "Minecraft-container-1-zUF"
+  };
 
 /***/ }
 /******/ ]);

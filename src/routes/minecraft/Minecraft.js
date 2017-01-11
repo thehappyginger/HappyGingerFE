@@ -9,9 +9,10 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import styles from './Contact.css';
+import styles from './Minecraft.css';
+import MinecraftMonit from '../../components/MinecraftMoniter/MinecraftMonit';
 
-class Contact extends React.Component {
+class Minecraft extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
   };
@@ -21,11 +22,11 @@ class Contact extends React.Component {
       <div className={styles.root}>
         <div className={styles.container}>
           <h1>{this.props.title}</h1>
-          <p>...</p>
+          <MinecraftMonit />
         </div>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(Contact);
+export default withStyles(styles)(Minecraft);

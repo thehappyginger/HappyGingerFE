@@ -10,7 +10,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Weather from '../../components/Weather/Weather';
-import MinecraftMonit from '../../components/MinecraftMoniter/MinecraftMonit';
+import Link from '../../components/Link/Link';
 import styles from './Home.css';
 
 class Home extends React.Component {
@@ -22,15 +22,36 @@ class Home extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <div className="container">
+        <div className={styles.container}>
           <div className="row">
-            <div className="col-md-8">
-              <h1>HappyGinger Datahub</h1>
-              <MinecraftMonit />
+            <div className="col-md-7">
+              <h1>Michael Coooper&apos;s Homepage</h1>
+              <h3>Quick Project Links</h3>
+              <ul>
+                <li><a href="https://github.com/thehappyginger" target="_blank" rel="noopener noreferrer">HappyGinger Github Repo</a></li>
+                <li>
+                  <Link to="/minecraft">Minecraft Server Moniter/Console</Link>
+                  <br />This is a small NodeJs app that I wrote to control a Minecraft
+                    Servr via a public REST API.
+                </li>
+              </ul>
+              <h3>Documentation Links</h3>
+              <ul>
+                <li><a href="//facebook.github.io/react/" target="_blank" rel="noopener noreferrer">ReactJs Documenation</a></li>
+                <li><a href="//getbootstrap.com/css/" target="_blank" rel="noopener noreferrer">Bootstrap CSS Documenation</a></li>
+                <li><a href="//minecraft.gamepedia.com/Commands/" target="_blank" rel="noopener noreferrer">Minecraft Console Commands</a></li>
+                <li><a href="//https://github.com/kriasoft/react-starter-kit" target="_blank" rel="noopener noreferrer">ReactJs Boilerplate</a></li>
+              </ul>
+              <h3>Commonly Used Websites</h3>
+              <ul>
+                <li><a href="//www.google.com/" target="_blank" rel="noopener noreferrer">Google</a></li>
+                <li><a href="//www.amazon.com/" target="_blank" rel="noopener noreferrer">Amazon</a></li>
+                <li><a href="//www.ebay.com/" target="_blank" rel="noopener noreferrer">Ebay</a></li>
+              </ul>
             </div>
-            <div className="col-md-4">
-              <Weather weather_location="Summerhaven, AZ" />
+            <div className="col-md-5">
               <Weather weather_location="Tucson, AZ" />
+              <Weather weather_location="Summerhaven, AZ" />
             </div>
           </div>
         </div>

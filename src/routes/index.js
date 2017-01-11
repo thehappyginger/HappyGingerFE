@@ -21,6 +21,7 @@ export default {
     require('./register').default,
     require('./about').default,
     require('./privacy').default,
+    require('./minecraft').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,

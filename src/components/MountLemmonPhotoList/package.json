@@ -1,0 +1,6 @@
+{
+  "name": "MountLemmonPhotoList",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MountLemmonPhotoList.js"
+}

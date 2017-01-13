@@ -1,16 +1,5 @@
 @import '../variables.css';
 
-.no_gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.no_gutters > [class^='col-'],
-.no_gutters > [class*='col-'] {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 .outputContainer {
   border: 1px solid #000;
   position: relative;

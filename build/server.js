@@ -159,7 +159,7 @@ module.exports =
 
   var _routes2 = _interopRequireDefault(_routes);
 
-  var _assets = __webpack_require__(111);
+  var _assets = __webpack_require__(118);
 
   var _assets2 = _interopRequireDefault(_assets);
 
@@ -2150,15 +2150,6 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-
   /* eslint-disable global-require */
 
   // The top-level (parent) route
@@ -2167,10 +2158,10 @@ module.exports =
     path: '/',
 
     // Keep in mind, routes are evaluated in order
-    children: [__webpack_require__(56).default, __webpack_require__(83).default, __webpack_require__(87).default, __webpack_require__(91).default, __webpack_require__(97).default, __webpack_require__(99).default,
+    children: [__webpack_require__(56).default, __webpack_require__(83).default, __webpack_require__(87).default, __webpack_require__(91).default, __webpack_require__(97).default, __webpack_require__(99).default, __webpack_require__(107).default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
-    __webpack_require__(107).default],
+    __webpack_require__(114).default],
 
     action: function action(_ref) {
       var _this = this;
@@ -5752,11 +5743,10 @@ module.exports =
 
 
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.MinecraftMonit-no_gutters-1rgvh {\n  margin-right: 0;\n  margin-left: 0;\n}\n\n.MinecraftMonit-no_gutters-1rgvh > [class^='col-'],\n.MinecraftMonit-no_gutters-1rgvh > [class*='col-'] {\n  padding-right: 0;\n  padding-left: 0;\n}\n\n.MinecraftMonit-outputContainer-1RkoV {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.MinecraftMonit-outputContainer_console-RloWq {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.MinecraftMonit-outputContainer_console_entry-3uwXJ {\n  padding-bottom: 0;\n}\n\n.MinecraftMonit-outputContainer_form-1fa6P {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/MinecraftMoniter/MinecraftMonit.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;;EAEE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,qBAAqB;CACtB;;AAED;EACE,cAAc;EACd,mBAAmB;CACpB;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,mBAAmB;EACnB,UAAU;CACX","file":"MinecraftMonit.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.no_gutters {\n  margin-right: 0;\n  margin-left: 0;\n}\n\n.no_gutters > [class^='col-'],\n.no_gutters > [class*='col-'] {\n  padding-right: 0;\n  padding-left: 0;\n}\n\n.outputContainer {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.outputContainer_console {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.outputContainer_console_entry {\n  padding-bottom: 0;\n}\n\n.outputContainer_form {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n  /*\n   * Layout\n   * ======================================================================== */\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n  /* Extra small screen / phone */\n  /* Small screen / tablet */\n  /* Medium screen / desktop */\n  /* Large screen / wide desktop */\n}\n\n.MinecraftMonit-outputContainer-1RkoV {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.MinecraftMonit-outputContainer_console-RloWq {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.MinecraftMonit-outputContainer_console_entry-3uwXJ {\n  padding-bottom: 0;\n}\n\n.MinecraftMonit-outputContainer_form-1fa6P {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n", "", {"version":3,"sources":["/./components/variables.css","/./components/MinecraftMoniter/MinecraftMonit.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;EAI9E;;gFAE8E;EAI9E;;gFAE8E;EAErD,gCAAgC;EAChC,2BAA2B;EAC3B,6BAA6B;EAC7B,iCAAiC;CAC3D;;AC5BD;EACE,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,qBAAqB;CACtB;;AAED;EACE,cAAc;EACd,mBAAmB;CACpB;;AAED;EACE,kBAAkB;CACnB;;AAED;EACE,YAAY;EACZ,aAAa;EACb,kBAAkB;EAClB,mBAAmB;EACnB,UAAU;CACX","file":"MinecraftMonit.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n","@import '../variables.css';\n\n.outputContainer {\n  border: 1px solid #000;\n  position: relative;\n  padding: 15px;\n  padding-bottom: 50px;\n}\n\n.outputContainer_console {\n  height: 500px;\n  overflow-y: scroll;\n}\n\n.outputContainer_console_entry {\n  padding-bottom: 0;\n}\n\n.outputContainer_form {\n  width: 100%;\n  height: 40px;\n  border-top: 100px;\n  position: absolute;\n  bottom: 0;\n}\n"],"sourceRoot":"webpack://"}]);
 
   // exports
   exports.locals = {
-  	"no_gutters": "MinecraftMonit-no_gutters-1rgvh",
   	"outputContainer": "MinecraftMonit-outputContainer-1RkoV",
   	"outputContainer_console": "MinecraftMonit-outputContainer_console-RloWq",
   	"outputContainer_console_entry": "MinecraftMonit-outputContainer_console_entry-3uwXJ",
@@ -5765,6 +5755,387 @@ module.exports =
 
 /***/ },
 /* 107 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/routes/mount-lemmon/index.js'; /**
+                                                                                               * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                               *
+                                                                                               * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                               *
+                                                                                               * This source code is licensed under the MIT license found in the
+                                                                                               * LICENSE.txt file in the root directory of this source tree.
+                                                                                               */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _Layout = __webpack_require__(57);
+
+  var _Layout2 = _interopRequireDefault(_Layout);
+
+  var _MountLemmon = __webpack_require__(108);
+
+  var _MountLemmon2 = _interopRequireDefault(_MountLemmon);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var title = 'Mount Lemmon Photolist';
+
+  exports.default = {
+
+    path: '/mount-lemmon',
+
+    action: function action() {
+      return {
+        title: title,
+        component: _react2.default.createElement(
+          _Layout2.default,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            },
+            __self: this
+          },
+          _react2.default.createElement(_MountLemmon2.default, { title: title, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            },
+            __self: this
+          })
+        )
+      };
+    }
+    };
+
+/***/ },
+/* 108 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/routes/mount-lemmon/MountLemmon.js'; /**
+                                                                                                     * React Starter Kit (https://www.reactstarterkit.com/)
+                                                                                                     *
+                                                                                                     * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                                                                     *
+                                                                                                     * This source code is licensed under the MIT license found in the
+                                                                                                     * LICENSE.txt file in the root directory of this source tree.
+                                                                                                     */
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _MountLemmon = __webpack_require__(109);
+
+  var _MountLemmon2 = _interopRequireDefault(_MountLemmon);
+
+  var _MountLemmonPhotoList = __webpack_require__(111);
+
+  var _MountLemmonPhotoList2 = _interopRequireDefault(_MountLemmonPhotoList);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var MountLemmon = function (_React$Component) {
+    (0, _inherits3.default)(MountLemmon, _React$Component);
+
+    function MountLemmon() {
+      (0, _classCallCheck3.default)(this, MountLemmon);
+      return (0, _possibleConstructorReturn3.default)(this, (MountLemmon.__proto__ || (0, _getPrototypeOf2.default)(MountLemmon)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(MountLemmon, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          { className: _MountLemmon2.default.root, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 22
+            },
+            __self: this
+          },
+          _react2.default.createElement(
+            'div',
+            { className: _MountLemmon2.default.container, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 23
+              },
+              __self: this
+            },
+            _react2.default.createElement(
+              'h1',
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 24
+                },
+                __self: this
+              },
+              this.props.title
+            ),
+            _react2.default.createElement(
+              'p',
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 25
+                },
+                __self: this
+              },
+              '...'
+            )
+          )
+        );
+      }
+    }]);
+    return MountLemmon;
+  }(_react2.default.Component);
+
+  MountLemmon.propTypes = {
+    title: _react.PropTypes.string.isRequired
+  };
+    exports.default = (0, _withStyles2.default)(_MountLemmon2.default)(MountLemmon);
+
+/***/ },
+/* 109 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(110);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MountLemmon.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MountLemmon.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 110 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {/*\n   * Typography\n   * ======================================================================== *//*\n   * Layout\n   * ======================================================================== *//*\n   * Media queries breakpoints\n   * ======================================================================== *//* Extra small screen / phone *//* Small screen / tablet *//* Medium screen / desktop *//* Large screen / wide desktop */\n}\n\n.MountLemmon-root-M7dC4 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.MountLemmon-container-Z2_8W {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./routes/mount-lemmon/MountLemmon.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH,OACE;;gFAE8E;;gFAMA;;gFAMA,gCAErB,2BACL,6BACE,iCACI;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"MountLemmon.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+  exports.locals = {
+  	"root": "MountLemmon-root-M7dC4",
+  	"container": "MountLemmon-container-Z2_8W"
+  };
+
+/***/ },
+/* 111 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _getPrototypeOf = __webpack_require__(20);
+
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+  var _classCallCheck2 = __webpack_require__(21);
+
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+  var _createClass2 = __webpack_require__(22);
+
+  var _createClass3 = _interopRequireDefault(_createClass2);
+
+  var _possibleConstructorReturn2 = __webpack_require__(23);
+
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+  var _inherits2 = __webpack_require__(24);
+
+  var _inherits3 = _interopRequireDefault(_inherits2);
+
+  var _jsxFileName = '/Users/mike.cooper/git/HappyGingerFE/src/components/MountLemmonPhotoList/MountLemmonPhotoList.js';
+
+  var _react = __webpack_require__(15);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _withStyles = __webpack_require__(28);
+
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+
+  var _fetch = __webpack_require__(51);
+
+  var _fetch2 = _interopRequireDefault(_fetch);
+
+  var _MountLemmonPhotoList = __webpack_require__(112);
+
+  var _MountLemmonPhotoList2 = _interopRequireDefault(_MountLemmonPhotoList);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var MountLemmonPhotoList = function (_React$Component) {
+    (0, _inherits3.default)(MountLemmonPhotoList, _React$Component);
+
+    function MountLemmonPhotoList(props) {
+      (0, _classCallCheck3.default)(this, MountLemmonPhotoList);
+
+      var _this = (0, _possibleConstructorReturn3.default)(this, (MountLemmonPhotoList.__proto__ || (0, _getPrototypeOf2.default)(MountLemmonPhotoList)).call(this, props));
+
+      _this.state = {
+        photoList: []
+      };
+      return _this;
+    }
+
+    (0, _createClass3.default)(MountLemmonPhotoList, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        var _this2 = this;
+
+        var url = 'https://www.happyginger.net/public/summit/listjpg.txt';
+
+        (0, _fetch2.default)(url).then(function (response) {
+          var responseArray = response.split('  ');
+          _this2.setState({ photoList: responseArray });
+        }).catch(function (err) {
+          var responseArray = [];
+          responseArray[0] = response.err;
+          _this2.setState({ photoList: responseArray });
+        });
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 32
+            },
+            __self: this
+          },
+          this.state.photoList
+        );
+      }
+    }]);
+    return MountLemmonPhotoList;
+  }(_react2.default.Component);
+
+    exports.default = (0, _withStyles2.default)(_MountLemmonPhotoList2.default)(MountLemmonPhotoList);
+
+/***/ },
+/* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(113);
+      var insertCss = __webpack_require__(32);
+
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+
+      module.exports = content.locals || {};
+      module.exports._getContent = function() { return content; };
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+      
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MountLemmonPhotoList.css", function() {
+          content = require("!!./../../../node_modules/css-loader/index.js?{\"importLoaders\":1,\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]-[local]-[hash:base64:5]\",\"minimize\":false,\"discardComments\":{\"removeAll\":true}}!./../../../node_modules/postcss-loader/index.js?pack=default!./MountLemmonPhotoList.css");
+
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(31)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n:root {\n    /*\n   * Typography\n   * ======================================================================== */\n    /*\n   * Layout\n   * ======================================================================== */\n    /*\n   * Media queries breakpoints\n   * ======================================================================== */\n    /* Extra small screen / phone */\n    /* Small screen / tablet */\n    /* Medium screen / desktop */\n    /* Large screen / wide desktop */\n}\n", "", {"version":3,"sources":["/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH;IACE;;gFAE8E;IAI9E;;gFAE8E;IAI9E;;gFAE8E;IAErD,gCAAgC;IAChC,2BAA2B;IAC3B,6BAA6B;IAC7B,iCAAiC;CAC3D","file":"MountLemmonPhotoList.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+
+  // exports
+
+
+/***/ },
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5789,7 +6160,7 @@ module.exports =
 
   var _Layout2 = _interopRequireDefault(_Layout);
 
-  var _NotFound = __webpack_require__(108);
+  var _NotFound = __webpack_require__(115);
 
   var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -5826,7 +6197,7 @@ module.exports =
     };
 
 /***/ },
-/* 108 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5872,7 +6243,7 @@ module.exports =
 
   var _withStyles2 = _interopRequireDefault(_withStyles);
 
-  var _NotFound = __webpack_require__(109);
+  var _NotFound = __webpack_require__(116);
 
   var _NotFound2 = _interopRequireDefault(_NotFound);
 
@@ -5940,11 +6311,11 @@ module.exports =
     exports.default = (0, _withStyles2.default)(_NotFound2.default)(NotFound);
 
 /***/ },
-/* 109 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(110);
+      var content = __webpack_require__(117);
       var insertCss = __webpack_require__(32);
 
       if (typeof content === 'string') {
@@ -5975,7 +6346,7 @@ module.exports =
     
 
 /***/ },
-/* 110 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(31)();
@@ -5992,7 +6363,7 @@ module.exports =
   };
 
 /***/ },
-/* 111 */
+/* 118 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");

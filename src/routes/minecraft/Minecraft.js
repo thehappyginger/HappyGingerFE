@@ -22,6 +22,16 @@ class Minecraft extends React.Component {
       <div className={styles.root}>
         <div className={styles.container}>
           <h1>{this.props.title}</h1>
+          <p>To Connect Via Minecraft: <strong>happyginger.net:25565</strong></p>
+          <p>Minecraft Server Commands Wiki:
+            <strong>
+              <a
+                href="http://minecraft.gamepedia.com/Commands"
+                target="_blank"
+                rel="noopener noreferrer"
+              >http://minecraft.gamepedia.com/Commands</a>
+            </strong>
+          </p>
           <MinecraftMonit />
         </div>
       </div>

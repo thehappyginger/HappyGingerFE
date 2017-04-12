@@ -10,6 +10,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Weather from '../../components/Weather/Weather';
+import Dominion from '../../components/Dominion/Dominion';
 import Link from '../../components/Link/Link';
 import styles from './Home.css';
 
@@ -50,6 +51,7 @@ class Home extends React.Component {
               </ul>
             </div>
             <div className="col-md-5">
+              <Dominion />
               <Weather weather_location="Tucson, AZ" show_extended_forcast />
               <Weather weather_location="Summerhaven, AZ" />
             </div>

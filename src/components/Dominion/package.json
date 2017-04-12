@@ -1,0 +1,6 @@
+{
+  "name": "Dominion",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Dominion.js"
+}

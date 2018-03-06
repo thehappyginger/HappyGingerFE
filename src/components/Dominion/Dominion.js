@@ -1,7 +1,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import styles from './Dominion.css';
-import { CardData } from './CardData';
+import CardData from './CardData';
 
 class Dominion extends React.Component {
   constructor(props) {
@@ -12,9 +12,7 @@ class Dominion extends React.Component {
         {
           index: 0,
           alias: '',
-          deck: [
-
-          ],
+          deck: [],
           currentPosition: 0,
         },
         {

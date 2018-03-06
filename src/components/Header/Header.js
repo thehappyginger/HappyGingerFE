@@ -22,8 +22,13 @@ class Header extends React.Component {
         <div className={styles.container}>
           <Navigation className={styles.nav} />
           <Link className={styles.brand} to="/">
-            {/* <img src={logoUrl} srcSet={`${logoUrl2x} 2x`} width="38" height="38" alt="React" /> */}
-            <span className={styles.brandTxt}>HappyGinger</span>
+            {/* <img
+              src={logoUrl}
+              srcSet={`${logoUrl2x} 2x`}
+              width="38"
+              height="38"
+              alt="React" /> */}
+            <span className={styles.brandTxt}>HappyGinger Homepage</span>
           </Link>
           <div className={styles.banner}>
             {/* <h1 className={styles.bannerTitle}></h1>

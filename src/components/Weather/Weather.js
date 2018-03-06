@@ -75,6 +75,7 @@ class Weather extends React.Component {
         </div>
       );
     }
+    return null;
   }
 
   formatWeather() {
@@ -125,7 +126,10 @@ class Weather extends React.Component {
   }
 }
 
-Weather.propTypes = { weather_location: React.PropTypes.string, show_extended_forcast: React.PropTypes.bool };
+Weather.propTypes = {
+  weather_location: React.PropTypes.string,
+  show_extended_forcast: React.PropTypes.bool,
+};
 Weather.defaultProps = { weather_location: 'Tucson, AZ', show_extended_forcast: false };
 
 export default withStyles(styles)(Weather);
